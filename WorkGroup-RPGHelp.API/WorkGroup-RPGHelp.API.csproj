@@ -15,4 +15,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WorkGroup-RPGHelp.DAL\WorkGroup-RPGHelp.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
