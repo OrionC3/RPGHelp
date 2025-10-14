@@ -1,0 +1,76 @@
+﻿using Isopoh.Cryptography.Argon2;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WorkGroup_RPGHelp.BLL.Services.Interfaces;
+using WorkGroup_RPGHelp.DAL.Repositories.Interfaces;
+using WorkGroup_RPGHelp.DL.Entities;
+
+namespace WorkGroup_RPGHelp.BLL.Services
+{
+    public class CampagnService : ICampagnService
+    {
+        private readonly ICampagnRepository _campagnRepository;
+
+        public CampagnService(ICampagnRepository campagnRepository)
+        {
+            _campagnRepository = campagnRepository;
+        }
+
+        public void Add(Campagn campagn)
+        {
+            _campagnRepository.Add(campagn);
+        }
+
+        public void Delete(int id)
+        {
+            Campagn? campagn = _campagnRepository.FindOne(id);
+            if (campagn == null) 
+            {
+                throw new Exception($"Campagn with {id} doesn't exist");
+            }
+            _campagnRepository.Delete(campagn);
+        }
+
+        public Campagn GetCampagnById(int id)
+        {
+            Campagn? campagn = _campagnRepository.FindOne(c => c.Id == id);
+            if(campagn == null)
+            {
+                throw new Exception($"Campagn with {id} not found");
+            }
+            return campagn;
+        }
+
+        public Campagn GetCampagnByName(string name)
+        {
+            Campagn? campagn = _campagnRepository.FindOne(c => c.Name == name);
+            if (campagn == null)
+            {
+                throw new Exception($"Campagn with {name} not found");
+            }
+            return campagn;
+        }
+
+        public IEnumerable<Campagn> GetCampagns(int page = 0)
+        {
+            return _campagnRepository.GetCampagns(page);
+        }
+
+        public void Update(int id, Campagn campagn)
+        {
+            Campagn? c = _campagnRepository.FindOne(c => c.Id == id);
+            if(c == null)
+            {
+                throw new Exception($"Campagn with {id} not found");
+            }
+
+            c.Id = campagn.Id;
+            c.Name = campagn.Name;
+
+            _campagnRepository.Update(c);
+        }
+    }
+}
