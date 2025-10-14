@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using WorkGroup_RPGHelp.BLL.Services;
+using WorkGroup_RPGHelp.BLL.Services.Interfaces;
 using WorkGroup_RPGHelp.DAL.Contexts;
+using WorkGroup_RPGHelp.DAL.Repositories;
+using WorkGroup_RPGHelp.DAL.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +20,9 @@ builder.Services.AddDbContext<RPGHelpContext>(b =>
     b.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
 );
 #endregion
+
+builder.Services.AddScoped <IUserRepository, UserRepository>();
+builder.Services.AddScoped <IUserService, UserService>();
 
 var app = builder.Build();
 

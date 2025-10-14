@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkGroup_RPGHelp.DAL.Contexts;
 
@@ -10,9 +11,11 @@ using WorkGroup_RPGHelp.DAL.Contexts;
 namespace WorkGroup_RPGHelp.DAL.Migrations
 {
     [DbContext(typeof(RPGHelpContext))]
-    partial class RPGHelpContextModelSnapshot : ModelSnapshot
+    [Migration("20251014123143_Init User")]
+    partial class InitUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +24,7 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.Role", b =>
+            modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.Users", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,33 +32,35 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
+                    b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("User_", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Name = "Admin"
+                            Email = "fabian@test.com",
+                            Password = ""
                         },
                         new
                         {
                             Id = 2,
-                            Name = "GM"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Players"
+                            Email = "mathieu@test.com",
+                            Password = ""
                         });
                 });
 #pragma warning restore 612, 618
