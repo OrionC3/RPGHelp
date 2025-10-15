@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WorkGroup_RPGHelp.API.Mappers;
 using WorkGroup_RPGHelp.API.Models.UsersDto;
+using WorkGroup_RPGHelp.API.Services;
 using WorkGroup_RPGHelp.BLL.Services.Interfaces;
 using WorkGroup_RPGHelp.DL.Entities;
 
@@ -12,10 +14,12 @@ namespace WorkGroup_RPGHelp.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly AuthService _authService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, AuthService authService)
         {
             _userService = userService;
+            _authService = authService;
         }
 
         [HttpGet]
@@ -28,14 +32,13 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpPost("register")]
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Register([FromBody] UserFormDto form)
         {
             _userService.Add(form.ToUser());
 
             return NoContent();
         }
-
         [HttpPost("login")]
         public ActionResult Login([FromBody] UserFormDto loginform)
         {
@@ -45,8 +48,9 @@ namespace WorkGroup_RPGHelp.API.Controllers
             }
             Users user = _userService.Login(loginform.Email, loginform.Password);
 
-            // To do - Create Token authentication
-            return Ok();
+            string token = _authService.GenerateToken(user);
+
+            return Ok(new { token });
         }
     }
 }
