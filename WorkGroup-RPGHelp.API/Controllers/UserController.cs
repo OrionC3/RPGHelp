@@ -22,6 +22,13 @@ namespace WorkGroup_RPGHelp.API.Controllers
             _authService = authService;
         }
 
+        [HttpGet("{id}")]
+        public ActionResult<UserIndexDto> GetUser([FromRoute] int id)
+        {
+            UserIndexDto user = _userService.GetUser(id).ToUserIndexDto();
+            return Ok(user);
+        }
+
         [HttpGet]
         public ActionResult<List<UserIndexDto>> GetUsers([FromQuery] int page = 0)
         {
@@ -51,6 +58,13 @@ namespace WorkGroup_RPGHelp.API.Controllers
             string token = _authService.GenerateToken(user);
 
             return Ok(new { token });
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete([FromRoute] int id)
+        {
+            _userService.Delete(id);
+            return NoContent();
         }
     }
 }

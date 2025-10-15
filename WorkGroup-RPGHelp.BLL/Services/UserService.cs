@@ -8,6 +8,8 @@ using WorkGroup_RPGHelp.BLL.Services.Interfaces;
 using WorkGroup_RPGHelp.DL.Entities;
 using WorkGroup_RPGHelp.DAL.Repositories.Interfaces;
 using Isopoh.Cryptography.Argon2;
+using WorkGroup_RPGHelp.BLL.Exceptions;
+using WorkGroup_RPGHelp.BLL.Exceptions.User;
 
 namespace WorkGroup_RPGHelp.BLL.Services
 {
@@ -30,7 +32,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
 
             if(user == null)
             {
-                throw new Exception($"Users with id : {id} doesn't exist");
+                throw new UserNotFoundException($"User with id : {id} not found.");
             }
             return user;
         }
@@ -38,7 +40,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
         {
             if(_userRepository.FindOne(u => u.Email == user.Email) != null)
             {
-                throw new Exception($"Users {user} not found");
+                throw new UserNotFoundException($"Email {user.Email} already exist.");
             }
             user.Password = Argon2.Hash(user.Password);
             _userRepository.Add(user);
@@ -50,7 +52,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
 
             if(existing == null)
             {
-                throw new Exception($"Users with id : {id} doesn't exist");
+                throw new UserNotFoundException($"User with id : {id} not found.");
             }
             _userRepository.Delete(existing);
         }
@@ -65,7 +67,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
             Users? existing = _userRepository.FindOne(id);
             if (existing == null)
             {
-                throw new Exception($"Users with id : {id} doesn't exist");
+                throw new UserNotFoundException($"User with id : {id} not found.");
             }
             _userRepository.Update(existing);
         }
