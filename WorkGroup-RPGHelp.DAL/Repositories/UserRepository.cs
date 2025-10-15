@@ -31,7 +31,7 @@ namespace WorkGroup_RPGHelp.DAL.Repositories
         }
         public Users? GetByEmail(string email)
         {
-            return _entities.FirstOrDefault(e => e.Email == email);
+            return _entities.Include(u => u.Role).FirstOrDefault(e => e.Email == email);
         }
     }
 }
