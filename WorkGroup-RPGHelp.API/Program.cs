@@ -54,6 +54,8 @@ builder.Services.AddDbContext<RPGHelpContext>(b =>
 builder.Services.AddScoped <IUserRepository, UserRepository>();
 builder.Services.AddScoped <IUserService, UserService>();
 
+builder.Services.AddScoped<ICampagnRepository, CampagnRepository>();
+builder.Services.AddScoped<ICampagnService, CampagnService>();
 #region Services
 builder.Services.AddScoped<AuthService>();
 #endregion
