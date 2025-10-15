@@ -10,5 +10,7 @@ namespace WorkGroup_RPGHelp.DL.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;
-    }
+        public List<Charactere> Characteres { get; set; } = [];
+        public List<Users> Users { get; set; } = [];
+    } 
 }

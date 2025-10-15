@@ -12,5 +12,7 @@ namespace WorkGroup_RPGHelp.DL.Entities
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
         public List<Role> Role { get; set; } = [];
+        public List<Charactere> Characteres { get; set; } = [];
+        public List<Campagn> Campagns { get; set; } = [];
     }
 }
