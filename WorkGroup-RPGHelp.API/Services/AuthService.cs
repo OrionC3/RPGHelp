@@ -24,7 +24,7 @@ namespace WorkGroup_RPGHelp.API.Services
             };
             foreach(var item in user.Role)
             {
-                claims.Add(new Claim(ClaimTypes.Role, item.ToString()));
+                claims.Add(new Claim(ClaimTypes.Role, item.Name.ToString()));
             }
 
             string secrekey = _config["Jwt:Key"];
