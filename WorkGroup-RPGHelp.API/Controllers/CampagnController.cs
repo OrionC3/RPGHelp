@@ -19,11 +19,39 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllCampagn() 
+        public ActionResult GetAllCampagn() 
         {
             List<Campagn> c = [.. _campagnService.GetCampagns()];
             List<CampagnIndexDto> cidto = [.. c.Select(c => c.ToCampagnIndexDto())];
-            return Ok();
+            return Ok(cidto);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult GetCampagn([FromRoute] int id)
+        {
+            CampagnIndexDto c = _campagnService.GetCampagnById(id).ToCampagnIndexDto();
+            return Ok(c);
+        }
+
+        [HttpPost]
+        public ActionResult AddCampagn([FromBody] CampagnFormDto form)
+        {
+            _campagnService.Add(form.ToCampagn());
+            return Created();
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult UpdateCampagn([FromRoute] int id, [FromBody] CampagnFormDto form)
+        {
+            _campagnService.Update(id, form.ToCampagn());
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete([FromRoute] int id)
+        {
+            _campagnService.Delete(id);
+            return NoContent();
         }
     }
 }

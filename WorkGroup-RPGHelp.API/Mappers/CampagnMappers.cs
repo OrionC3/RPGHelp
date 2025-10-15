@@ -13,5 +13,13 @@ namespace WorkGroup_RPGHelp.API.Mappers
                 Name = campagn.Name,
             };
         }
+
+        public static Campagn ToCampagn(this CampagnFormDto campagn) 
+        {
+            return new Campagn()
+            {
+                Name = campagn.Name,
+            };
+        }
     }
 }

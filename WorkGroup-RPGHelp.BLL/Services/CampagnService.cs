@@ -67,7 +67,10 @@ namespace WorkGroup_RPGHelp.BLL.Services
                 throw new Exception($"Campagn with {id} not found");
             }
 
-            c.Id = campagn.Id;
+            if(campagn.Id > 0)
+            {
+                c.Id = campagn.Id;
+            }
             c.Name = campagn.Name;
 
             _campagnRepository.Update(c);
