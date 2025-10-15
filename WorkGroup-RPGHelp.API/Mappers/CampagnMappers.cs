@@ -6,11 +6,12 @@ namespace WorkGroup_RPGHelp.API.Mappers
     public static class CampagnMappers
     {
         public static CampagnIndexDto ToCampagnIndexDto(this Campagn campagn) 
-        { 
+        {
             return new CampagnIndexDto()
             {
-
-            }
+                Id = campagn.Id,
+                Name = campagn.Name,
+            };
         }
     }
 }

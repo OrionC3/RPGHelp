@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WorkGroup_RPGHelp.API.Mappers;
+using WorkGroup_RPGHelp.API.Models.CampagnDto;
 using WorkGroup_RPGHelp.BLL.Services.Interfaces;
 using WorkGroup_RPGHelp.DL.Entities;
 
@@ -20,7 +22,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         public IActionResult GetAllCampagn() 
         {
             List<Campagn> c = [.. _campagnService.GetCampagns()];
-            List<CampagnIndexDto> cidto = c.Select(c => c.ToCampagnIndexDto()).ToList();
+            List<CampagnIndexDto> cidto = [.. c.Select(c => c.ToCampagnIndexDto())];
             return Ok();
         }
     }
