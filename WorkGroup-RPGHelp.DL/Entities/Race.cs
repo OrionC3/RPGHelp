@@ -10,7 +10,7 @@ namespace WorkGroup_RPGHelp.DL.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int TravalSpeed { get; set; }
+        public int TravelSpeed { get; set; }
         public BonusRacial BonusRacial { get; set; }
         public int BonusRacialId { get; set; }
     }

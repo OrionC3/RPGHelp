@@ -16,7 +16,6 @@ namespace WorkGroup_RPGHelp.DAL.Configs
             builder.ToTable("BonusRacial").HasKey(b => b.Id);
             builder.Property(b => b.Id).ValueGeneratedOnAdd();
 
-            builder.HasIndex(b => b.Name).IsUnique();
             builder.Property(b => b.Name).IsRequired().HasMaxLength(100);
 
             builder.HasData(

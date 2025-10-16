@@ -57,6 +57,10 @@ builder.Services.AddScoped <IUserService, UserService>();
 
 builder.Services.AddScoped<ICampagnRepository, CampagnRepository>();
 builder.Services.AddScoped<ICampagnService, CampagnService>();
+
+builder.Services.AddScoped<IRaceRepository, RaceRepository>();
+builder.Services.AddScoped<IRaceService, RaceService>();
+
 #region Services
 builder.Services.AddScoped<AuthService>();
 #endregion
