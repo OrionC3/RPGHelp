@@ -11,5 +11,8 @@ namespace WorkGroup_RPGHelp.DAL.Repositories.Interfaces
     {
         IEnumerable<Users> GetUsers(int page = 0, Func<Users, bool>? predicate = null);
         Users GetByEmail(string email);
+        public void SignUpCampagn(Users user, Campagn campagn);
+        public void SignOutCampagn(Users user, Campagn campagn);
+        public bool CharactereIsPlaying(Users user, int campagnId);
     }
 }

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WorkGroup_RPGHelp.DL.Entities;
 
-namespace WorkGroup_RPGHelp.DL.Entities
+namespace WorkGroup_RPGHelp.API.Models.CharacteresDto
 {
-    public class Charactere
+    public class CharactereFormDto
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;
@@ -29,9 +25,6 @@ namespace WorkGroup_RPGHelp.DL.Entities
         public int XP { get; set; }
         public int Speed { get; set; }
         public int UserId { get; set; }
-        public Users? Users { get; set; }
         public int? CampagnId { get; set; }
-        public Campagn? Campagns { get; set; }
-
     }
 }

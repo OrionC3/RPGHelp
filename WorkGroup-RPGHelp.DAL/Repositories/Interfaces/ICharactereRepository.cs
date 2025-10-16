@@ -9,5 +9,7 @@ namespace WorkGroup_RPGHelp.DAL.Repositories.Interfaces
 {
     public interface ICharactereRepository: IBaseRepository<Charactere>
     {
+        IEnumerable<Charactere> GetCharacteres(int page = 0, Func<Charactere, bool>? predicate = null);
+        IEnumerable<Charactere> GetCharacteresByUserId(int userId, int page = 0, Func<Charactere, bool>? predicate = null);
     }
 }

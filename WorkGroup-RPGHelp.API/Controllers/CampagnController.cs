@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TI_Net2025_DemoCleanAsp.Extensions;
 using WorkGroup_RPGHelp.API.Mappers;
 using WorkGroup_RPGHelp.API.Models.CampagnDto;
+using WorkGroup_RPGHelp.API.Models.CharacteresDto;
+using WorkGroup_RPGHelp.API.Models.UsersDto;
 using WorkGroup_RPGHelp.BLL.Services.Interfaces;
 using WorkGroup_RPGHelp.DL.Entities;
 
@@ -23,6 +26,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         {
             List<Campagn> c = [.. _campagnService.GetCampagns()];
             List<CampagnIndexDto> cidto = [.. c.Select(c => c.ToCampagnIndexDto())];
+            List<CampagnIndexDto> cidto2 = _campagnService.GetCampagns().Select(c => c.ToCampagnIndexDto()).ToList();
             return Ok(cidto);
         }
 
@@ -48,7 +52,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete([FromRoute] int id)
+        public ActionResult Delete([FromRoute] int id)
         {
             _campagnService.Delete(id);
             return NoContent();

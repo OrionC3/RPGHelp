@@ -80,8 +80,6 @@ namespace WorkGroup_RPGHelp.DAL.Configs
                     Speed = 30,
                     UserId = 2,
                 },
-
-                // Troisième personnage : Borin, le Nain Guerrier
                 new Charactere
                 {
                     Id = 3,
@@ -104,16 +102,17 @@ namespace WorkGroup_RPGHelp.DAL.Configs
                     Level = 1,
                     XP = 0,
                     Speed = 20, // Les Nains sont souvent plus lents
-                    UserId = 2,
+                    UserId = 1,
                 }
             );
 
-            builder.HasMany(c => c.Users)
-            .WithMany(u => u.Role).UsingEntity(j => j.HasData(
-            new { UserId = 1, RoleId = 1 },
-            new { UserId = 1, RoleId = 2 },
-            new { UserId = 2, RoleId = 3 }
-            ));
+            builder.HasOne(c => c.Users)
+                .WithMany(u => u.Characteres)
+                .HasForeignKey(c => c.UserId);
+
+            builder.HasOne(c => c.Campagns)
+                .WithMany(ca => ca.Characteres)
+                .HasForeignKey(c => c.CampagnId);
         }
     }
 

@@ -33,5 +33,24 @@ namespace WorkGroup_RPGHelp.DAL.Repositories
         {
             return _entities.Include(u => u.Role).FirstOrDefault(e => e.Email == email);
         }
+
+        public void SignUpCampagn(Users user, Campagn campagn)
+        {
+            user.Campagns.Add(campagn);
+            _context.SaveChanges();
+        }
+
+        public void SignOutCampagn(Users user, Campagn campagn)
+        {
+            _entities.Attach(user);
+            _entities.Entry(user).Collection(u => u.Campagns).Load();
+            user.Campagns.Remove(campagn);
+            _context.SaveChanges();
+        }
+
+        public bool CharactereIsPlaying(Users user, int campagnId)
+        {
+            return _entities.Where(u => u.Id == user.Id).SelectMany(u => u.Campagns).Any(c => c.Id == campagnId);      
+        }
     }
 }
