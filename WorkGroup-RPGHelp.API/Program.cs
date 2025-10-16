@@ -45,6 +45,7 @@ c.AddSecurityRequirement(new OpenApiSecurityRequirement {
 
     });
 });
+
 #region DbContext
 // Add DB Context
 builder.Services.AddDbContext<RPGHelpContext>(b =>
@@ -52,16 +53,18 @@ builder.Services.AddDbContext<RPGHelpContext>(b =>
 );
 #endregion
 
+#region Repositories
 builder.Services.AddScoped <IUserRepository, UserRepository>();
-builder.Services.AddScoped <IUserService, UserService>();
-
 builder.Services.AddScoped<ICampagnRepository, CampagnRepository>();
-builder.Services.AddScoped<ICampagnService, CampagnService>();
-
 builder.Services.AddScoped<IRaceRepository, RaceRepository>();
-builder.Services.AddScoped<IRaceService, RaceService>();
+builder.Services.AddScoped<ICharactereRepository, CharactereRepository>();
+#endregion
 
 #region Services
+builder.Services.AddScoped <IUserService, UserService>();
+builder.Services.AddScoped<ICampagnService, CampagnService>();
+builder.Services.AddScoped<ICharactereService, CharactereService>();
+builder.Services.AddScoped<IRaceService, RaceService>();
 builder.Services.AddScoped<AuthService>();
 #endregion
 

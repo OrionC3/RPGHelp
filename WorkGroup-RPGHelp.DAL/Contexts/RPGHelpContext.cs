@@ -8,6 +8,7 @@ namespace WorkGroup_RPGHelp.DAL.Contexts
         public DbSet<Role> Roles { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<Campagn> Campagns { get; set; }
+        public DbSet<Charactere> Characteres { get; set; }
 
         public RPGHelpContext(DbContextOptions<RPGHelpContext> options) : base(options) { }
 

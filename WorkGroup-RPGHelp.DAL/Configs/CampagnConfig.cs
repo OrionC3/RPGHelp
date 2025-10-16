@@ -8,17 +8,20 @@ namespace WorkGroup_RPGHelp.DAL.Configs
     {
         public void Configure(EntityTypeBuilder<Campagn> builder)
         {
-            builder.ToTable("Campagn").HasKey(r => r.Id);
-            builder.Property(r => r.Id).ValueGeneratedOnAdd();
+            builder.ToTable("Campagn").HasKey(c => c.Id);
+            builder.Property(c => c.Id).ValueGeneratedOnAdd();
 
-            builder.HasIndex(r => r.Name).IsUnique();
-            builder.Property(r => r.Name).IsRequired().HasMaxLength(50);
+            builder.HasIndex(c => c.Name).IsUnique();
+            builder.Property(c => c.Name).IsRequired().HasMaxLength(50);
 
             builder.HasData(
                 new Role { Id = 1, Name = "Ma première Campagne" },
                 new Role { Id = 2, Name = "True Story" },
                 new Role { Id = 3, Name = "Dragon First" }
             );
+
+            builder.HasMany(c => c.Characteres)
+                .WithOne(ch => ch.Campagns);
         }
     }
 }

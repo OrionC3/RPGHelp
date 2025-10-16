@@ -1,11 +1,12 @@
 ﻿using Azure;
+using Isopoh.Cryptography.Argon2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WorkGroup_RPGHelp.BLL.Services.Interfaces;
-using WorkGroup_RPGHelp.DL.Entities;
+using WorkGroup_RPGHelp.DAL.Repositories;
 using WorkGroup_RPGHelp.DAL.Repositories.Interfaces;
 using Isopoh.Cryptography.Argon2;
 using WorkGroup_RPGHelp.BLL.Exceptions;
@@ -16,10 +17,12 @@ namespace WorkGroup_RPGHelp.BLL.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly ICampagnRepository _campagnRepository;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, ICampagnRepository campagnRepository)
         {
             _userRepository = userRepository;
+            _campagnRepository = campagnRepository;
         }
         public IEnumerable<Users> GetUsers(int page = 0)
         {
@@ -78,5 +81,28 @@ namespace WorkGroup_RPGHelp.BLL.Services
             return u;
         }
 
+        public void SignUpCampagn(int userId, int campagnId)
+        {
+            Users? user = _userRepository.FindOne(userId);
+            Campagn? campagn = _campagnRepository.FindOne(campagnId);
+            
+            if (user == null || campagn == null)
+            {
+                throw new Exception("Utilisateur ou Campagne non trouvé.");
+            }
+            //test user dans la campagne
+            bool hasAlreadyJoinCampagn = _userRepository.CharactereIsPlaying(user, campagn.Id);
+
+            if (hasAlreadyJoinCampagn)
+            {
+                //true
+                _userRepository.SignOutCampagn(user, campagn);
+            }
+            else
+            {
+                //false
+                _userRepository.SignUpCampagn(user, campagn);
+            }
+        }
     }
 }

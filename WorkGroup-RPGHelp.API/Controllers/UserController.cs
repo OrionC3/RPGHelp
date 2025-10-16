@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using WorkGroup_RPGHelp.API.Mappers;
 using WorkGroup_RPGHelp.API.Models.UsersDto;
 using WorkGroup_RPGHelp.API.Services;
+using WorkGroup_RPGHelp.BLL.Services;
 using WorkGroup_RPGHelp.BLL.Services.Interfaces;
 using WorkGroup_RPGHelp.DL.Entities;
 
@@ -65,6 +66,13 @@ namespace WorkGroup_RPGHelp.API.Controllers
         {
             _userService.Delete(id);
             return NoContent();
+        }
+        
+        [HttpPost("join-campagn/{userId}")]
+        public ActionResult SignUpCampagn([FromRoute] int userId, [FromBody] int campagnId)
+        {
+            _userService.SignUpCampagn(userId, campagnId);
+            return Created();
         }
     }
 }

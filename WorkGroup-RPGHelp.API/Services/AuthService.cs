@@ -20,7 +20,8 @@ namespace WorkGroup_RPGHelp.API.Services
         {
             List<Claim> claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.Sid, user.Email.ToString())
+                new Claim(ClaimTypes.Sid, user.Id.ToString()),
+                new Claim(ClaimTypes.Email, user.Email.ToString())
             };
             foreach(var item in user.Role)
             {
