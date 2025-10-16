@@ -11,6 +11,7 @@ using WorkGroup_RPGHelp.DAL.Repositories.Interfaces;
 using Isopoh.Cryptography.Argon2;
 using WorkGroup_RPGHelp.BLL.Exceptions;
 using WorkGroup_RPGHelp.BLL.Exceptions.User;
+using WorkGroup_RPGHelp.DL.Entities;
 
 namespace WorkGroup_RPGHelp.BLL.Services
 {

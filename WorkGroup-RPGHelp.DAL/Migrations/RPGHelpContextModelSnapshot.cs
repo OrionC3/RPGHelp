@@ -161,6 +161,185 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.Charactere", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BaseAttackBonus")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CampagnId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Charisma")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Constitution")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Defence")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(10);
+
+                    b.Property<int>("Dexterity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FortitudeSave")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdRace")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Initiative")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Intelligence")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("PVCurrent")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PVMax")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReflexeSave")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Speed")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Strength")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WillpowerSave")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Wisdom")
+                        .HasColumnType("int");
+
+                    b.Property<int>("XP")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CampagnId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Characteres", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_Charactere__Charisma", "Charisma >= 0");
+
+                            t.HasCheckConstraint("CK_Charactere__Constitution", "Constitution >= 0");
+
+                            t.HasCheckConstraint("CK_Charactere__Dexterity", "Dexterity >= 0");
+
+                            t.HasCheckConstraint("CK_Charactere__Intelligence", "Intelligence >= 0");
+
+                            t.HasCheckConstraint("CK_Charactere__Level", "Level >= 0");
+
+                            t.HasCheckConstraint("CK_Charactere__PVMax", "PVMax > 0");
+
+                            t.HasCheckConstraint("CK_Charactere__Speed", "Speed >= 0");
+
+                            t.HasCheckConstraint("CK_Charactere__Strength", "Strength >= 0");
+
+                            t.HasCheckConstraint("CK_Charactere__Wisdom", "Wisdom >= 0");
+
+                            t.HasCheckConstraint("CK_Charactere__XP", "XP >= 0");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BaseAttackBonus = 1,
+                            Charisma = 10,
+                            Constitution = 14,
+                            Defence = 17,
+                            Dexterity = 10,
+                            FortitudeSave = 4,
+                            IdRace = 1,
+                            Initiative = 0,
+                            Intelligence = 8,
+                            Level = 1,
+                            Name = "Arik le Solide",
+                            PVCurrent = 12,
+                            PVMax = 12,
+                            ReflexeSave = 0,
+                            Speed = 30,
+                            Strength = 16,
+                            UserId = 1,
+                            WillpowerSave = 1,
+                            Wisdom = 12,
+                            XP = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BaseAttackBonus = 0,
+                            Charisma = 8,
+                            Constitution = 12,
+                            Defence = 15,
+                            Dexterity = 18,
+                            FortitudeSave = 1,
+                            IdRace = 2,
+                            Initiative = 4,
+                            Intelligence = 10,
+                            Level = 1,
+                            Name = "Elara la Furtive",
+                            PVCurrent = 10,
+                            PVMax = 10,
+                            ReflexeSave = 6,
+                            Speed = 30,
+                            Strength = 10,
+                            UserId = 2,
+                            WillpowerSave = 2,
+                            Wisdom = 14,
+                            XP = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BaseAttackBonus = 1,
+                            Charisma = 8,
+                            Constitution = 16,
+                            Defence = 16,
+                            Dexterity = 12,
+                            FortitudeSave = 5,
+                            IdRace = 3,
+                            Initiative = 1,
+                            Intelligence = 10,
+                            Level = 1,
+                            Name = "Borin Pied-de-Fer",
+                            PVCurrent = 14,
+                            PVMax = 14,
+                            ReflexeSave = 1,
+                            Speed = 20,
+                            Strength = 14,
+                            UserId = 1,
+                            WillpowerSave = 0,
+                            Wisdom = 10,
+                            XP = 0
+                        });
+                });
+
             modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.Race", b =>
                 {
                     b.Property<int>("Id")
@@ -322,6 +501,23 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.Charactere", b =>
+                {
+                    b.HasOne("WorkGroup_RPGHelp.DL.Entities.Campagn", "Campagns")
+                        .WithMany("Characteres")
+                        .HasForeignKey("CampagnId");
+
+                    b.HasOne("WorkGroup_RPGHelp.DL.Entities.Users", "Users")
+                        .WithMany("Characteres")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Campagns");
+
+                    b.Navigation("Users");
+                });
+
             modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.Race", b =>
                 {
                     b.HasOne("WorkGroup_RPGHelp.DL.Entities.BonusRacial", "BonusRacial")
@@ -337,6 +533,16 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                 {
                     b.Navigation("Race")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.Campagn", b =>
+                {
+                    b.Navigation("Characteres");
+                });
+
+            modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.Users", b =>
+                {
+                    b.Navigation("Characteres");
                 });
 #pragma warning restore 612, 618
         }
