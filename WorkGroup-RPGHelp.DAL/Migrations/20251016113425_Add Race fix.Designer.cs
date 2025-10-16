@@ -11,8 +11,8 @@ using WorkGroup_RPGHelp.DAL.Contexts;
 namespace WorkGroup_RPGHelp.DAL.Migrations
 {
     [DbContext(typeof(RPGHelpContext))]
-    [Migration("20251015120430_init campagn")]
-    partial class initcampagn
+    [Migration("20251016113425_Add Race fix")]
+    partial class AddRacefix
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,6 +56,60 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.BonusRacial", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Bonus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Malus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Name2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BonusRacial", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Bonus = 2,
+                            Malus = -2,
+                            Name = "Dexterity",
+                            Name2 = "Strength"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Bonus = 2,
+                            Malus = -2,
+                            Name = "Intelligence",
+                            Name2 = "Strength"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Bonus = 2,
+                            Malus = -2,
+                            Name = "Constitution",
+                            Name2 = "Charisma"
+                        });
+                });
+
             modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.Campagn", b =>
                 {
                     b.Property<int>("Id")
@@ -91,6 +145,59 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         {
                             Id = 3,
                             Name = "Dragon First"
+                        });
+                });
+
+            modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.Race", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BonusRacialId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("TravelSpeed")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BonusRacialId")
+                        .IsUnique();
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Race", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BonusRacialId = 1,
+                            Name = "Elf",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BonusRacialId = 2,
+                            Name = "Orc",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BonusRacialId = 3,
+                            Name = "Half Elf",
+                            TravelSpeed = 0
                         });
                 });
 
@@ -184,6 +291,23 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.Race", b =>
+                {
+                    b.HasOne("WorkGroup_RPGHelp.DL.Entities.BonusRacial", "BonusRacial")
+                        .WithOne("Race")
+                        .HasForeignKey("WorkGroup_RPGHelp.DL.Entities.Race", "BonusRacialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BonusRacial");
+                });
+
+            modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.BonusRacial", b =>
+                {
+                    b.Navigation("Race")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
