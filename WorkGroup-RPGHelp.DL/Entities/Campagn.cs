@@ -10,6 +10,9 @@ namespace WorkGroup_RPGHelp.DL.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;
+        public bool IsFinish { get; set; } = false;
+        public string? Description { get; set; }
+        public int IdGM { get; set; }
         public List<Charactere> Characteres { get; set; } = [];
         public List<Users> Users { get; set; } = [];
     } 
