@@ -10,10 +10,10 @@ namespace WorkGroup_RPGHelp.API.Mappers
         {
             return new BonusRacialIndexDto()
             {
-                Name = b.Name,
-                Name2 = b.Name2,
-                Bonus = b.Bonus,
-                Malus = b.Malus,
+                Name = b.BonusName,
+                Name2 = b.MalusName,
+                Bonus = b.BonusValue,
+                Malus = b.MalusValue,
             };
         }
 
@@ -21,10 +21,10 @@ namespace WorkGroup_RPGHelp.API.Mappers
         {
             return new BonusRacial()
             {
-                Name = b.Name,
-                Name2 = b.Name2,
-                Bonus = b.Bonus,
-                Malus = b.Malus,
+                BonusName = b.BonusName,
+                MalusName = b.MalusName,
+                BonusValue = b.BonusValue,
+                MalusValue = b.MalusValue,
             };
         }
     }

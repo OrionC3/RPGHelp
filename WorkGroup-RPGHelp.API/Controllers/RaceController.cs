@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata.Ecma335;
 using WorkGroup_RPGHelp.API.Mappers;
@@ -34,6 +35,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Add([FromBody] RaceFormDto form)
         {
             _raceService.Add(form.ToRace());

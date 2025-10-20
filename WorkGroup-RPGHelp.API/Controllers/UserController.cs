@@ -24,6 +24,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult<UserIndexDto> GetUser([FromRoute] int id)
         {
             UserIndexDto user = _userService.GetUser(id).ToUserIndexDto();
@@ -31,6 +32,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult<List<UserIndexDto>> GetUsers([FromQuery] int page = 0)
         {
             List<UserIndexDto> users = _userService.GetUsers(page)
@@ -40,7 +42,6 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpPost("register")]
-        [Authorize(Roles = "Admin")]
         public IActionResult Register([FromBody] UserFormDto form)
         {
             _userService.Add(form.ToUser());
@@ -62,6 +63,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete([FromRoute] int id)
         {
             _userService.Delete(id);
@@ -69,8 +71,10 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
         
         [HttpPost("join-campagn/{userId}")]
+        [Authorize]
         public ActionResult SignUpCampagn([FromRoute] int userId, [FromBody] int campagnId)
         {
+            // Mj request ? 
             _userService.SignUpCampagn(userId, campagnId);
             return Created();
         }

@@ -31,7 +31,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpGet("{id}")]
-        //[Authorize]
+        [Authorize]
         public ActionResult GetCharactereById([FromRoute] int id)
         {
             CharactereDetailsDto c = _charactereService.GetCharactereById(id).ToCharactereDetailsDto();
@@ -39,7 +39,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public ActionResult AddCharactere([FromBody] CharactereFormDto form)
         {
             _charactereService.Add(form.ToCharactere());
@@ -47,7 +47,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpPut("{id}")]
-        //[Authorize]
+        [Authorize]
         public ActionResult UpdateCharactere([FromRoute] int id, [FromBody] CharactereFormDto form)
         {
             _charactereService.Update(id, form.ToCharactere());
@@ -55,7 +55,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[Authorize]
+        [Authorize]
         public ActionResult Delete([FromRoute] int id)
         {
             _charactereService.Delete(id);
@@ -63,6 +63,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpPost("sign-up-campagn/{charactereId}&{campagnId}")]
+        [Authorize]
         public ActionResult SignUpCampagn([FromRoute] int charactereId, [FromRoute] int campagnId)
         {
             _charactereService.SignUpCampagn(charactereId, campagnId);

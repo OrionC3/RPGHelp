@@ -79,6 +79,10 @@ namespace WorkGroup_RPGHelp.BLL.Services
         public Users Login(string email, string password)
         {
             Users? u = _userRepository.GetByEmail(email);
+            if (!Argon2.Verify(u.Password, password))
+            {
+                throw new Exception($"Bad request");
+            }
             return u;
         }
 

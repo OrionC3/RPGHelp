@@ -7,18 +7,18 @@ namespace WorkGroup_RPGHelp.API.Models.RaceDto
     {
         [Required]
         [MaxLength(20)]
-        public string Name { get; set; }
+        public string BonusName { get; set; }
 
         [Required]
         [Range(0 , 5)]
-        public int Bonus { get; set; }
+        public int BonusValue { get; set; }
 
         [Required]
         [MaxLength(20)]
-        public string Name2 { get; set; }
+        public string MalusName { get; set; }
 
         [Required]
         [Range(-5, 0)]
-        public int Malus { get; set; }
+        public int MalusValue { get; set; }
     }
 }

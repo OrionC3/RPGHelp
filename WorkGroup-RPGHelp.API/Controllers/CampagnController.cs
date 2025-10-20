@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TI_Net2025_DemoCleanAsp.Extensions;
 using WorkGroup_RPGHelp.API.Mappers;
@@ -22,15 +23,16 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult GetAllCampagn() 
         {
             List<Campagn> c = [.. _campagnService.GetCampagns()];
             List<CampagnIndexDto> cidto = [.. c.Select(c => c.ToCampagnIndexDto())];
-            List<CampagnIndexDto> cidto2 = _campagnService.GetCampagns().Select(c => c.ToCampagnIndexDto()).ToList();
             return Ok(cidto);
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public ActionResult GetCampagn([FromRoute] int id)
         {
             CampagnIndexDto c = _campagnService.GetCampagnById(id).ToCampagnIndexDto();
@@ -38,6 +40,8 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
+        // Add model state
         public ActionResult AddCampagn([FromBody] CampagnFormDto form)
         {
             _campagnService.Add(form.ToCampagn());
@@ -45,6 +49,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public ActionResult UpdateCampagn([FromRoute] int id, [FromBody] CampagnFormDto form)
         {
             _campagnService.Update(id, form.ToCampagn());
@@ -52,6 +57,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public ActionResult Delete([FromRoute] int id)
         {
             _campagnService.Delete(id);

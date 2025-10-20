@@ -16,12 +16,12 @@ namespace WorkGroup_RPGHelp.DAL.Configs
             builder.ToTable("BonusRacial").HasKey(b => b.Id);
             builder.Property(b => b.Id).ValueGeneratedOnAdd();
 
-            builder.Property(b => b.Name).IsRequired().HasMaxLength(100);
+            builder.Property(b => b.BonusName).IsRequired().HasMaxLength(100);
 
             builder.HasData(
-                new BonusRacial { Id = 1, Name = "Dexterity", Bonus = 2, Name2 = "Strength", Malus = -2 },
-                new BonusRacial { Id = 2, Name = "Intelligence", Bonus = 2, Name2 = "Strength", Malus = -2 },
-                new BonusRacial { Id = 3, Name = "Constitution", Bonus = 2, Name2 = "Charisma", Malus = -2 }
+                new BonusRacial { Id = 1, BonusName = "Dexterity", BonusValue = 2, MalusName = "Strength", MalusValue = -2 },
+                new BonusRacial { Id = 2, BonusName = "Intelligence", BonusValue = 2, MalusName = "Strength", MalusValue = -2 },
+                new BonusRacial { Id = 3, BonusName = "Constitution", BonusValue = 2, MalusName = "Charisma", MalusValue = -2 }
             );
         }
     }

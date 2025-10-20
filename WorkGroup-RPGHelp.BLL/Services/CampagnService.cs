@@ -18,7 +18,6 @@ namespace WorkGroup_RPGHelp.BLL.Services
         {
             _campagnRepository = campagnRepository;
         }
-
         public void Add(Campagn campagn)
         {
             _campagnRepository.Add(campagn);
