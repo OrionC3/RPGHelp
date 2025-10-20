@@ -17,5 +17,6 @@ namespace WorkGroup_RPGHelp.BLL.Services.Interfaces
         void Delete(int id);
         Users Login(string email, string password);
         void SignUpCampagn(int userId, int campagnId);
+        void SignUpCampagn(int userId, int campagnId, int IdGM);
     }
 }

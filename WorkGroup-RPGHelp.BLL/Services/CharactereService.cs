@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkGroup_RPGHelp.BLL.Exceptions.Campagn;
+using WorkGroup_RPGHelp.BLL.Exceptions.Character;
 using WorkGroup_RPGHelp.BLL.Services.Interfaces;
 using WorkGroup_RPGHelp.DAL.Repositories.Interfaces;
 using WorkGroup_RPGHelp.DL.Entities;
@@ -29,7 +31,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
             Charactere? charactere = _charactereRepository.FindOne(id);
             if (charactere == null)
             {
-                throw new Exception($"charactere with {id} doesn't exist");
+                throw new CharacterNotFoundException($"charactere with {id} doesn't exist");
             }
             _charactereRepository.Delete(charactere);
         }
@@ -39,7 +41,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
             Charactere? charactere = _charactereRepository.FindOne(c => c.Id == id);
             if (charactere == null)
             {
-                throw new Exception($"charactere with {id} not found");
+                throw new CharacterNotFoundException($"charactere with {id} not found");
             }
             return charactere;
         }
@@ -49,7 +51,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
             Charactere? charactere = _charactereRepository.FindOne(c => c.Name == name);
             if (charactere == null)
             {
-                throw new Exception($"Campagn with {name} not found");
+                throw new CampagnNotFoundException($"Campagn with {name} not found");
             }
             return charactere;
         }
@@ -68,7 +70,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
             Charactere? c = _charactereRepository.FindOne(c => c.Id == id);
             if (c == null)
             {
-                throw new Exception($"Campagn with {id} not found");
+                throw new CampagnNotFoundException($"Campagn with {id} not found");
             }
 
             if (charactere.Id > 0)
@@ -84,7 +86,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
             Charactere? c = _charactereRepository.FindOne(c => c.Id == charactereId);
             if (c == null)
             {
-                throw new Exception($"Campagn with {charactereId} not found");
+                throw new CampagnNotFoundException($"Campagn with {charactereId} not found");
             }
             //TO DO, check user is in table campagnusers
             Users? u = _userRepository.FindOne(c.UserId);
@@ -110,7 +112,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
             }
             else
             {
-                throw new Exception($"User is not playing in the campagn {campagnId}");
+                throw new CampagnUserException($"User is not playing in the campagn {campagnId}");
             }
         }
     }
