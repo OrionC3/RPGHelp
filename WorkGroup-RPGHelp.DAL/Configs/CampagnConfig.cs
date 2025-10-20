@@ -15,9 +15,9 @@ namespace WorkGroup_RPGHelp.DAL.Configs
             builder.Property(c => c.Name).IsRequired().HasMaxLength(50);
 
             builder.HasData(
-                new Role { Id = 1, Name = "Ma première Campagne" },
-                new Role { Id = 2, Name = "True Story" },
-                new Role { Id = 3, Name = "Dragon First" }
+                new Campagn { Id = 1, Name = "Ma première Campagne" , Description = "Chapter 4 finished", IsFinish = false, IdGM = 1},
+                new Campagn { Id = 2, Name = "True Story", Description = "Chapter 2 started", IsFinish = false, IdGM = 2 },
+                new Campagn { Id = 3, Name = "Dragon First", IsFinish = false, IdGM = 1 }
             );
 
             builder.HasMany(c => c.Characteres)

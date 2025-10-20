@@ -41,10 +41,13 @@ namespace WorkGroup_RPGHelp.API.Controllers
 
         [HttpPost]
         [Authorize]
-        // Add model state
         public ActionResult AddCampagn([FromBody] CampagnFormDto form)
         {
-            _campagnService.Add(form.ToCampagn());
+            if (form is null || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            _campagnService.Add(form.ToCampagn(), User.GetId());
             return Created();
         }
 
@@ -52,6 +55,10 @@ namespace WorkGroup_RPGHelp.API.Controllers
         [Authorize]
         public ActionResult UpdateCampagn([FromRoute] int id, [FromBody] CampagnFormDto form)
         {
+            if (form is null || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             _campagnService.Update(id, form.ToCampagn());
             return NoContent();
         }

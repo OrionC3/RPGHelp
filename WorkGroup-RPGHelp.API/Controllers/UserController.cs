@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TI_Net2025_DemoCleanAsp.Extensions;
 using WorkGroup_RPGHelp.API.Mappers;
 using WorkGroup_RPGHelp.API.Models.UsersDto;
 using WorkGroup_RPGHelp.API.Services;
@@ -44,6 +45,10 @@ namespace WorkGroup_RPGHelp.API.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromBody] UserFormDto form)
         {
+            if (form is null || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             _userService.Add(form.ToUser());
 
             return NoContent();
@@ -70,12 +75,27 @@ namespace WorkGroup_RPGHelp.API.Controllers
             return NoContent();
         }
         
-        [HttpPost("join-campagn/{userId}")]
+        [HttpPost("join-campagn/")]
+        [Authorize]
+        public ActionResult SignUpCampagn([FromBody] int campagnId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            _userService.SignUpCampagn(User.GetId(), campagnId);
+            return Created();
+        }
+
+        [HttpPost("invit-campagn/{userId}")]
         [Authorize]
         public ActionResult SignUpCampagn([FromRoute] int userId, [FromBody] int campagnId)
         {
-            // Mj request ? 
-            _userService.SignUpCampagn(userId, campagnId);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            _userService.SignUpCampagn(userId, campagnId, User.GetId());
             return Created();
         }
     }

@@ -38,6 +38,10 @@ namespace WorkGroup_RPGHelp.API.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Add([FromBody] RaceFormDto form)
         {
+            if (form is null || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             _raceService.Add(form.ToRace());
             return NoContent();
         }

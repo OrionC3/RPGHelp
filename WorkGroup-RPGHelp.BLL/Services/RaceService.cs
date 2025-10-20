@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkGroup_RPGHelp.BLL.Exceptions.Race;
 using WorkGroup_RPGHelp.BLL.Services.Interfaces;
 using WorkGroup_RPGHelp.DAL.Repositories.Interfaces;
 using WorkGroup_RPGHelp.DL.Entities;
@@ -22,7 +23,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
         {
             if(_raceRepository.FindOne(r => r.Name == race.Name) != null)
             {
-                throw new Exception($"Name {race.Name} already exist.");
+                throw new RaceAlreadyExistException($"Name {race.Name} already exist.");
             }
             _raceRepository.Add(race);
         }
@@ -39,7 +40,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
 
             if(race == null)
             {
-                throw new Exception($"Race with id {id} not found.");
+                throw new RaceNotFoundException($"Race with id {id} not found.");
             }
             return race;
         }

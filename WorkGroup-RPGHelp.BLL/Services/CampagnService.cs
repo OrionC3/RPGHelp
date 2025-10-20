@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkGroup_RPGHelp.BLL.Exceptions.Campagn;
 using WorkGroup_RPGHelp.BLL.Services.Interfaces;
 using WorkGroup_RPGHelp.DAL.Repositories.Interfaces;
 using WorkGroup_RPGHelp.DL.Entities;
@@ -18,8 +19,9 @@ namespace WorkGroup_RPGHelp.BLL.Services
         {
             _campagnRepository = campagnRepository;
         }
-        public void Add(Campagn campagn)
+        public void Add(Campagn campagn, int userid)
         {
+            campagn.IdGM = userid;
             _campagnRepository.Add(campagn);
         }
 
@@ -28,7 +30,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
             Campagn? campagn = _campagnRepository.FindOne(id);
             if (campagn == null) 
             {
-                throw new Exception($"Campagn with {id} doesn't exist");
+                throw new CampagnNotFoundException($"Campagn with {id} doesn't exist");
             }
             _campagnRepository.Delete(campagn);
         }
@@ -38,7 +40,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
             Campagn? campagn = _campagnRepository.FindOne(c => c.Id == id);
             if(campagn == null)
             {
-                throw new Exception($"Campagn with {id} not found");
+                throw new CampagnNotFoundException($"Campagn with {id} not found");
             }
             return campagn;
         }
@@ -48,7 +50,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
             Campagn? campagn = _campagnRepository.FindOne(c => c.Name == name);
             if (campagn == null)
             {
-                throw new Exception($"Campagn with {name} not found");
+                throw new CampagnNotFoundException($"Campagn with {name} not found");
             }
             return campagn;
         }
@@ -63,7 +65,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
             Campagn? c = _campagnRepository.FindOne(c => c.Id == id);
             if(c == null)
             {
-                throw new Exception($"Campagn with {id} not found");
+                throw new CampagnNotFoundException($"Campagn with {id} not found");
             }
 
             if(campagn.Id > 0)

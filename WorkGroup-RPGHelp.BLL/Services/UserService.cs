@@ -12,6 +12,7 @@ using Isopoh.Cryptography.Argon2;
 using WorkGroup_RPGHelp.BLL.Exceptions;
 using WorkGroup_RPGHelp.BLL.Exceptions.User;
 using WorkGroup_RPGHelp.DL.Entities;
+using WorkGroup_RPGHelp.BLL.Exceptions.Campagn;
 
 namespace WorkGroup_RPGHelp.BLL.Services
 {
@@ -44,7 +45,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
         {
             if(_userRepository.FindOne(u => u.Email == user.Email) != null)
             {
-                throw new UserNotFoundException($"Email {user.Email} already exist.");
+                throw new UserExistException($"Email {user.Email} already exist.");
             }
             user.Password = Argon2.Hash(user.Password);
             _userRepository.Add(user);
@@ -81,26 +82,35 @@ namespace WorkGroup_RPGHelp.BLL.Services
             Users? u = _userRepository.GetByEmail(email);
             if (!Argon2.Verify(u.Password, password))
             {
-                throw new Exception($"Bad request");
+                throw new UserPasswordException($"Bad request");
             }
             return u;
         }
-
+        // User add himself
         public void SignUpCampagn(int userId, int campagnId)
         {
             Users? user = _userRepository.FindOne(userId);
-            Campagn? campagn = _campagnRepository.FindOne(campagnId);
-            
-            if (user == null || campagn == null)
+
+            if (user == null)
             {
-                throw new Exception("Utilisateur ou Campagne non trouvé.");
+                throw new UserNotFoundException($"User with id {userId} not found");
             }
+            Campagn? campagn = _campagnRepository.FindOne(campagnId);
+            if (campagn == null)
+            {
+                throw new CampagnNotFoundException($"Campagn with id {campagnId} not found");
+            }
+
             //test user dans la campagne
             bool hasAlreadyJoinCampagn = _userRepository.CharactereIsPlaying(user, campagn.Id);
 
             if (hasAlreadyJoinCampagn)
             {
                 //true
+                if(campagn.IdGM == user.Id)
+                {
+                    throw new UserLeaveCampagnException($"GM can't not leave the campagn");
+                }
                 _userRepository.SignOutCampagn(user, campagn);
             }
             else
@@ -108,6 +118,26 @@ namespace WorkGroup_RPGHelp.BLL.Services
                 //false
                 _userRepository.SignUpCampagn(user, campagn);
             }
+        }
+        // GM add users
+        public void SignUpCampagn(int userId, int campagnId, int IdGM)
+        {
+            Users? user = _userRepository.FindOne(userId);
+            if(user == null)
+            {
+                throw new UserNotFoundException($"User with id {userId} not found");
+            }
+            Campagn? campagn = _campagnRepository.FindOne(campagnId);
+            if(campagn == null)
+            {
+                throw new CampagnNotFoundException($"Campagn with id {campagnId} not found");
+            }
+            // test if GM
+            if (campagn.IdGM != IdGM)
+            {
+                throw new ($"User with id {IdGM} is not GM");
+            }
+            _userRepository.SignUpCampagn(user, campagn);
         }
     }
 }

@@ -42,6 +42,10 @@ namespace WorkGroup_RPGHelp.API.Controllers
         [Authorize]
         public ActionResult AddCharactere([FromBody] CharactereFormDto form)
         {
+            if (form is null || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             _charactereService.Add(form.ToCharactere());
             return Created();
         }
@@ -50,6 +54,10 @@ namespace WorkGroup_RPGHelp.API.Controllers
         [Authorize]
         public ActionResult UpdateCharactere([FromRoute] int id, [FromBody] CharactereFormDto form)
         {
+            if (form is null || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             _charactereService.Update(id, form.ToCharactere());
             return NoContent();
         }
