@@ -11,12 +11,13 @@ namespace WorkGroup_RPGHelp.API.Mappers
             {
                 Id = charactere.Id,
                 Name = charactere.Name,
-                IdRace = charactere.IdRace,
+                IdRace = charactere.RaceId,
                 Level = charactere.Level,
                 UserId = charactere.UserId,
                 Users = charactere.Users,
                 CampagnId = charactere.CampagnId,
                 Campagns = charactere.Campagns,
+                RaceIndexDto = charactere.Race.ToRaceIndexDto(),
             };
         }
 
@@ -25,7 +26,6 @@ namespace WorkGroup_RPGHelp.API.Mappers
             return new CharactereDetailsDto()
             {
                 Name = charactere.Name,
-                IdRace = charactere.IdRace,
                 PVMax = charactere.PVMax,
                 PVCurrent = charactere.PVCurrent,
                 Strength = charactere.Strength,
@@ -43,6 +43,8 @@ namespace WorkGroup_RPGHelp.API.Mappers
                 Level = charactere.Level,
                 XP = charactere.XP,
                 Speed = charactere.Speed,
+                RaceId = charactere.RaceId,
+                RaceIndexDto = charactere.Race.ToRaceIndexDto(),
             };
         }
 
@@ -52,7 +54,6 @@ namespace WorkGroup_RPGHelp.API.Mappers
             {
                 Id = charactere.Id,
                 Name = charactere.Name,
-                IdRace = charactere.IdRace,
                 PVMax = charactere.PVMax,
                 PVCurrent = charactere.PVCurrent,
                 Strength = charactere.Strength,
@@ -72,6 +73,7 @@ namespace WorkGroup_RPGHelp.API.Mappers
                 Speed = charactere.Speed,
                 CampagnId = charactere.CampagnId,
                 UserId = charactere.UserId,
+                RaceId = charactere.IdRace,
             };
         }
     }

@@ -37,7 +37,12 @@ namespace WorkGroup_RPGHelp.DAL.Repositories
 
         public IEnumerable<Charactere> GetCharacteresCampagn(int campagnId)
         {
-            return _entities.Where(c => c.Id == campagnId).SelectMany(c => c.Characteres);
+            return _entities
+                .Include(c => c.Characteres)
+                .ThenInclude(ch => ch.Race)
+                .ThenInclude(r => r.BonusRacial)
+                .Where(c => c.Id == campagnId)
+                .SelectMany(c => c.Characteres);
         }
     }
 }

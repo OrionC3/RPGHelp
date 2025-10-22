@@ -10,7 +10,6 @@ namespace WorkGroup_RPGHelp.DL.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;
-        public int IdRace { get; set; }
         public int PVMax { get; set; }
         public int PVCurrent { get; set; }
         public int Strength { get; set; }
@@ -32,6 +31,8 @@ namespace WorkGroup_RPGHelp.DL.Entities
         public Users? Users { get; set; }
         public int? CampagnId { get; set; }
         public Campagn? Campagns { get; set; }
+        public int RaceId { get; set; }
+        public Race? Race { get; set; }
 
     }
 }

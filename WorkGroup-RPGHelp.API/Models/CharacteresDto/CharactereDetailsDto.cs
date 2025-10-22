@@ -1,11 +1,11 @@
-﻿using WorkGroup_RPGHelp.DL.Entities;
+﻿using WorkGroup_RPGHelp.API.Models.RaceDto;
+using WorkGroup_RPGHelp.DL.Entities;
 
 namespace WorkGroup_RPGHelp.API.Models.CharacteresDto
 {
     public class CharactereDetailsDto
     {
         public string Name { get; set; } = null!;
-        public int IdRace { get; set; }
         public int PVMax { get; set; }
         public int PVCurrent { get; set; }
         public int Strength { get; set; }
@@ -23,6 +23,8 @@ namespace WorkGroup_RPGHelp.API.Models.CharacteresDto
         public int Level { get; set; }
         public int XP { get; set; }
         public int Speed { get; set; }
+        public int RaceId { get; set; }
+        public RaceIndexDto? RaceIndexDto { get; set; }
 
     }
 }

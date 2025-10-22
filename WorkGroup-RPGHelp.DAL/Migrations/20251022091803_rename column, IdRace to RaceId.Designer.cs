@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkGroup_RPGHelp.DAL.Contexts;
 
@@ -11,9 +12,11 @@ using WorkGroup_RPGHelp.DAL.Contexts;
 namespace WorkGroup_RPGHelp.DAL.Migrations
 {
     [DbContext(typeof(RPGHelpContext))]
-    partial class RPGHelpContextModelSnapshot : ModelSnapshot
+    [Migration("20251022091554_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,21 +55,6 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                             CampagnsId = 1,
                             UsersId = 2
                         });
-                });
-
-            modelBuilder.Entity("RaceSpell", b =>
-                {
-                    b.Property<int>("RacesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SpellsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RacesId", "SpellsId");
-
-                    b.HasIndex("SpellsId");
-
-                    b.ToTable("RaceSpell");
                 });
 
             modelBuilder.Entity("RoleUsers", b =>
@@ -485,57 +473,6 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.Spell", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Spell", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "A bolt of flame shoots from your fingertips, searing your target.\r\nDamage: 1d10 fire damage (scales with level)",
-                            Level = 0,
-                            Name = "Firebolt"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "A spear of pure shadow pierces a single enemy, ignoring armor.\r\nDamage: 2d8 necrotic damage, ignores non-magical defense.",
-                            Level = 0,
-                            Name = "Shadow Lance"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "A shimmering barrier of force surrounds you.\r\n+5 AC until the start of your next turn.",
-                            Level = 0,
-                            Name = "Shielding Ward"
-                        });
-                });
-
             modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.Users", b =>
                 {
                     b.Property<int>("Id")
@@ -587,21 +524,6 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                     b.HasOne("WorkGroup_RPGHelp.DL.Entities.Users", null)
                         .WithMany()
                         .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("RaceSpell", b =>
-                {
-                    b.HasOne("WorkGroup_RPGHelp.DL.Entities.Race", null)
-                        .WithMany()
-                        .HasForeignKey("RacesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WorkGroup_RPGHelp.DL.Entities.Spell", null)
-                        .WithMany()
-                        .HasForeignKey("SpellsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
