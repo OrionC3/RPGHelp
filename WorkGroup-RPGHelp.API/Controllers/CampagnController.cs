@@ -70,5 +70,13 @@ namespace WorkGroup_RPGHelp.API.Controllers
             _campagnService.Delete(id);
             return NoContent();
         }
+
+        [HttpPut("changegm/{id}")]
+        [Authorize]
+        public ActionResult ChangeGM([FromBody] int userID, [FromRoute] int campagnId)
+        {
+            _campagnService.ChangeGM(User.GetId(), userID, campagnId);
+            return NoContent();
+        }
     }
 }
