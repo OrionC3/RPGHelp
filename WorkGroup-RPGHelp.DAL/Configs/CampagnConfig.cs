@@ -22,6 +22,13 @@ namespace WorkGroup_RPGHelp.DAL.Configs
 
             builder.HasMany(c => c.Characteres)
                 .WithOne(ch => ch.Campagns);
+
+            builder.HasMany(c => c.Users)
+                .WithMany(u => u.Campagns).UsingEntity(j => j.HasData(
+                    new { UsersId = 1, CampagnsId = 1 },
+                    new { UsersId = 1, CampagnsId = 2 },
+                    new { UsersId = 2, CampagnsId = 1 }
+                    ));
         }
     }
 }

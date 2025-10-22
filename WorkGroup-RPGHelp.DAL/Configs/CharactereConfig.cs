@@ -55,6 +55,7 @@ namespace WorkGroup_RPGHelp.DAL.Configs
                     XP = 0,
                     Speed = 30,
                     UserId = 1,
+                    CampagnId = 1,
                 },
                 new Charactere
                 {
@@ -79,6 +80,7 @@ namespace WorkGroup_RPGHelp.DAL.Configs
                     XP = 0,
                     Speed = 30,
                     UserId = 2,
+                    CampagnId = 1,
                 },
                 new Charactere
                 {
@@ -103,6 +105,7 @@ namespace WorkGroup_RPGHelp.DAL.Configs
                     XP = 0,
                     Speed = 20, // Les Nains sont souvent plus lents
                     UserId = 1,
+                    CampagnId = 2,
                 }
             );
 

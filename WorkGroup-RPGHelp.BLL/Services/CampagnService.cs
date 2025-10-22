@@ -26,20 +26,6 @@ namespace WorkGroup_RPGHelp.BLL.Services
             _campagnRepository.Add(campagn);
         }
 
-        public void ChangeGM(int oldGMId, int newGMId, int campagnId)
-        {
-            Campagn? campagn = _campagnRepository.FindOne(campagnId);
-            if (campagn == null) 
-            {
-                throw new CampagnNotFoundException($"Campagn with {campagnId} doesn't exist");
-            }
-            if (campagn.IdGM != oldGMId) 
-            {
-                throw new UserNotGMException();
-            }
-            campagn.IdGM = newGMId;
-            _campagnRepository.Update(campagn);
-        }
 
         public void Delete(int id)
         {
@@ -91,6 +77,29 @@ namespace WorkGroup_RPGHelp.BLL.Services
             c.Name = campagn.Name;
 
             _campagnRepository.Update(c);
+        }
+        public void ChangeGM(int oldGMId, int newGMId, int campagnId)
+        {
+            Campagn? campagn = _campagnRepository.FindOne(campagnId);
+            if (campagn == null) 
+            {
+                throw new CampagnNotFoundException($"Campagn with {campagnId} doesn't exist");
+            }
+            if (campagn.IdGM != oldGMId) 
+            {
+                throw new UserNotGMException();
+            }
+            campagn.IdGM = newGMId;
+            _campagnRepository.Update(campagn);
+        }
+        public IEnumerable<Charactere> GetCharacteresCampagn(int campagnId)
+        {
+            return _campagnRepository.GetCharacteresCampagn(campagnId);
+        }
+
+        public IEnumerable<Users> GetUsersCampagn(int campagnId)
+        {
+            return _campagnRepository.GetUsersCampagn(campagnId);
         }
     }
 }

@@ -78,5 +78,23 @@ namespace WorkGroup_RPGHelp.API.Controllers
             _campagnService.ChangeGM(User.GetId(), userID, campagnId);
             return NoContent();
         }
+
+        [HttpGet("campagn-users/{campagnId}")]
+        //[Authorize]
+        public ActionResult GetAllUsersByCampagn([FromRoute] int campagnId)
+        {
+            List<Users> users = _campagnService.GetUsersCampagn(campagnId).ToList();
+            List<UserIndexDto> userIndexDtos = users.Select(u => u.ToUserIndexDto()).ToList();
+            return Ok(userIndexDtos);
+        }
+
+        [HttpGet("campagn-characteres/{campagnId}")]
+        //[Authorize]
+        public ActionResult GetAllcharacteresByCampagn([FromRoute] int campagnId)
+        {
+            List<Charactere> characteres = _campagnService.GetCharacteresCampagn(campagnId).ToList();
+            List<CharactereIndexDto> characteresIndexDtos = characteres.Select(c => c.ToCharactereIndexDto()).ToList();
+            return Ok(characteresIndexDtos);
+        }
     }
 }

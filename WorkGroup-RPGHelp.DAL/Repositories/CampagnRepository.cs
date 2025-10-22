@@ -29,5 +29,15 @@ namespace WorkGroup_RPGHelp.DAL.Repositories
                 .Skip(page * 10)
                 .Take(10);
         }
+
+        public IEnumerable<Users> GetUsersCampagn(int campagnId)
+        {
+            return _entities.Where(c => c.Id == campagnId).SelectMany(c => c.Users);
+        }
+
+        public IEnumerable<Charactere> GetCharacteresCampagn(int campagnId)
+        {
+            return _entities.Where(c => c.Id == campagnId).SelectMany(c => c.Characteres);
+        }
     }
 }

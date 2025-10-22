@@ -16,5 +16,7 @@ namespace WorkGroup_RPGHelp.BLL.Services.Interfaces
         void Update(int id, Campagn campagn);
         void Delete(int id);
         void ChangeGM(int oldGMId, int newGMId, int campagnId);
+        IEnumerable<Users> GetUsersCampagn(int campagnId);
+        IEnumerable<Charactere> GetCharacteresCampagn(int campagnId);
     }
 }
