@@ -10,7 +10,6 @@ namespace WorkGroup_RPGHelp.API.Mappers
             return new UserIndexDto()
             {
                 Email = u.Email,
-                Password = u.Password,
             };
         }
 

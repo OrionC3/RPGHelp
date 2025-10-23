@@ -45,5 +45,16 @@ namespace WorkGroup_RPGHelp.API.Controllers
             _raceService.Add(form.ToRace());
             return NoContent();
         }
+
+        [HttpDelete]
+        public ActionResult Delete([FromRoute] int id)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            _raceService.Delete(id);
+            return NoContent();
+        }
     }
 }
