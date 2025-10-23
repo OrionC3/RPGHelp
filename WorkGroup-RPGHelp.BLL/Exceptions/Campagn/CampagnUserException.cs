@@ -12,7 +12,7 @@ namespace WorkGroup_RPGHelp.BLL.Exceptions.Campagn
         {
             
         }
-        public CampagnUserException(int status, object content) : base(status, content)
+        public CampagnUserException(object content) : base(400, content)
         {
         }
     }

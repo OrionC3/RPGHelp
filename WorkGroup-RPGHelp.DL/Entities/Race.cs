@@ -13,5 +13,6 @@ namespace WorkGroup_RPGHelp.DL.Entities
         public int TravelSpeed { get; set; }
         public BonusRacial BonusRacial { get; set; }
         public int BonusRacialId { get; set; }
+        public List<Spell> Spells { get; set; }
     }
 }

@@ -6,16 +6,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkGroup_RPGHelp.DAL.Contexts;
 using WorkGroup_RPGHelp.DAL.Repositories.Interfaces;
 
 namespace WorkGroup_RPGHelp.DAL.Repositories
 {
     public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
-        protected readonly DbContext _context;
+        protected readonly RPGHelpContext _context;
         protected readonly DbSet<TEntity> _entities;
 
-        public BaseRepository(DbContext context)
+        public BaseRepository(RPGHelpContext context)
         {
             _context = context;
             _entities = _context.Set<TEntity>();
