@@ -18,7 +18,7 @@ namespace WorkGroup_RPGHelp.DAL.Repositories
 
         public IEnumerable<Charactere> GetCharacteres(int page = 0, Func<Charactere, bool>? predicate = null)
         {
-            IEnumerable<Charactere> query = _entities;
+            IEnumerable<Charactere> query = _entities.Include(c => c.Race).ThenInclude(r => r.BonusRacial);
 
             if (predicate != null)
             {
@@ -32,7 +32,7 @@ namespace WorkGroup_RPGHelp.DAL.Repositories
 
         public IEnumerable<Charactere> GetCharacteresByUserId(int userId, int page = 0, Func<Charactere, bool>? predicate = null)
         {
-            IEnumerable<Charactere> query = _entities.Where(p => p.UserId == userId);
+            IEnumerable<Charactere> query = _entities.Include(c => c.Race).ThenInclude(r => r.BonusRacial).Where(p => p.UserId == userId);
 
             if (predicate != null)
             {

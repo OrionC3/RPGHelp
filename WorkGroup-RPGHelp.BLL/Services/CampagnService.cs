@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WorkGroup_RPGHelp.BLL.Exceptions.Campagn;
+using WorkGroup_RPGHelp.BLL.Exceptions.User;
 using WorkGroup_RPGHelp.BLL.Services.Interfaces;
 using WorkGroup_RPGHelp.DAL.Repositories.Interfaces;
 using WorkGroup_RPGHelp.DL.Entities;
@@ -24,6 +25,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
             campagn.IdGM = userid;
             _campagnRepository.Add(campagn);
         }
+
 
         public void Delete(int id)
         {
@@ -75,6 +77,29 @@ namespace WorkGroup_RPGHelp.BLL.Services
             c.Name = campagn.Name;
 
             _campagnRepository.Update(c);
+        }
+        public void ChangeGM(int oldGMId, int newGMId, int campagnId)
+        {
+            Campagn? campagn = _campagnRepository.FindOne(campagnId);
+            if (campagn == null) 
+            {
+                throw new CampagnNotFoundException($"Campagn with {campagnId} doesn't exist");
+            }
+            if (campagn.IdGM != oldGMId) 
+            {
+                throw new UserNotGMException();
+            }
+            campagn.IdGM = newGMId;
+            _campagnRepository.Update(campagn);
+        }
+        public IEnumerable<Charactere> GetCharacteresCampagn(int campagnId)
+        {
+            return _campagnRepository.GetCharacteresCampagn(campagnId);
+        }
+
+        public IEnumerable<Users> GetUsersCampagn(int campagnId)
+        {
+            return _campagnRepository.GetUsersCampagn(campagnId);
         }
     }
 }

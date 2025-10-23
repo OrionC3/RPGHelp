@@ -36,7 +36,7 @@ namespace WorkGroup_RPGHelp.DAL.Configs
                 {
                     Id = 1,
                     Name = "Arik le Solide",
-                    IdRace = 1, // Ex: Humain
+                    RaceId = 1, // Ex: Humain
                     PVMax = 12,
                     PVCurrent = 12,
                     Strength = 16,
@@ -55,12 +55,13 @@ namespace WorkGroup_RPGHelp.DAL.Configs
                     XP = 0,
                     Speed = 30,
                     UserId = 1,
+                    CampagnId = 1,
                 },
                 new Charactere
                 {
                     Id = 2,
                     Name = "Elara la Furtive",
-                    IdRace = 2, // Ex: Elfe
+                    RaceId = 2, // Ex: Elfe
                     PVMax = 10,
                     PVCurrent = 10,
                     Strength = 10,
@@ -79,12 +80,13 @@ namespace WorkGroup_RPGHelp.DAL.Configs
                     XP = 0,
                     Speed = 30,
                     UserId = 2,
+                    CampagnId = 1,
                 },
                 new Charactere
                 {
                     Id = 3,
                     Name = "Borin Pied-de-Fer",
-                    IdRace = 3, // Ex: Nain
+                    RaceId = 3, // Ex: Nain
                     PVMax = 14,
                     PVCurrent = 14,
                     Strength = 14,
@@ -103,6 +105,7 @@ namespace WorkGroup_RPGHelp.DAL.Configs
                     XP = 0,
                     Speed = 20, // Les Nains sont souvent plus lents
                     UserId = 1,
+                    CampagnId = 2,
                 }
             );
 

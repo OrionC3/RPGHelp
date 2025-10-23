@@ -1,4 +1,5 @@
-﻿using WorkGroup_RPGHelp.DL.Entities;
+﻿using WorkGroup_RPGHelp.API.Models.RaceDto;
+using WorkGroup_RPGHelp.DL.Entities;
 
 namespace WorkGroup_RPGHelp.API.Models.CharacteresDto
 {
@@ -13,5 +14,6 @@ namespace WorkGroup_RPGHelp.API.Models.CharacteresDto
         public Users? Users { get; set; }
         public int? CampagnId { get; set; }
         public Campagn? Campagns { get; set; }
+        public RaceIndexDto? RaceIndexDto { get; set; }
     }
 }

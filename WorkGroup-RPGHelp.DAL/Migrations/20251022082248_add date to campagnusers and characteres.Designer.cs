@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkGroup_RPGHelp.DAL.Contexts;
 
@@ -11,9 +12,11 @@ using WorkGroup_RPGHelp.DAL.Contexts;
 namespace WorkGroup_RPGHelp.DAL.Migrations
 {
     [DbContext(typeof(RPGHelpContext))]
-    partial class RPGHelpContextModelSnapshot : ModelSnapshot
+    [Migration("20251022082248_add date to campagnusers and characteres")]
+    partial class adddatetocampagnusersandcharacteres
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,21 +55,6 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                             CampagnsId = 1,
                             UsersId = 2
                         });
-                });
-
-            modelBuilder.Entity("RaceSpell", b =>
-                {
-                    b.Property<int>("RacesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SpellsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RacesId", "SpellsId");
-
-                    b.HasIndex("SpellsId");
-
-                    b.ToTable("RaceSpell");
                 });
 
             modelBuilder.Entity("RoleUsers", b =>
@@ -241,6 +229,9 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                     b.Property<int>("FortitudeSave")
                         .HasColumnType("int");
 
+                    b.Property<int>("IdRace")
+                        .HasColumnType("int");
+
                     b.Property<int>("Initiative")
                         .HasColumnType("int");
 
@@ -259,9 +250,6 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("PVMax")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RaceId")
                         .HasColumnType("int");
 
                     b.Property<int>("ReflexeSave")
@@ -288,8 +276,6 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CampagnId");
-
-                    b.HasIndex("RaceId");
 
                     b.HasIndex("UserId");
 
@@ -327,13 +313,13 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                             Defence = 17,
                             Dexterity = 10,
                             FortitudeSave = 4,
+                            IdRace = 1,
                             Initiative = 0,
                             Intelligence = 8,
                             Level = 1,
                             Name = "Arik le Solide",
                             PVCurrent = 12,
                             PVMax = 12,
-                            RaceId = 1,
                             ReflexeSave = 0,
                             Speed = 30,
                             Strength = 16,
@@ -352,13 +338,13 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                             Defence = 15,
                             Dexterity = 18,
                             FortitudeSave = 1,
+                            IdRace = 2,
                             Initiative = 4,
                             Intelligence = 10,
                             Level = 1,
                             Name = "Elara la Furtive",
                             PVCurrent = 10,
                             PVMax = 10,
-                            RaceId = 2,
                             ReflexeSave = 6,
                             Speed = 30,
                             Strength = 10,
@@ -377,13 +363,13 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                             Defence = 16,
                             Dexterity = 12,
                             FortitudeSave = 5,
+                            IdRace = 3,
                             Initiative = 1,
                             Intelligence = 10,
                             Level = 1,
                             Name = "Borin Pied-de-Fer",
                             PVCurrent = 14,
                             PVMax = 14,
-                            RaceId = 3,
                             ReflexeSave = 1,
                             Speed = 20,
                             Strength = 14,
@@ -485,57 +471,6 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.Spell", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Spell", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "A bolt of flame shoots from your fingertips, searing your target.\r\nDamage: 1d10 fire damage (scales with level)",
-                            Level = 0,
-                            Name = "Firebolt"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "A spear of pure shadow pierces a single enemy, ignoring armor.\r\nDamage: 2d8 necrotic damage, ignores non-magical defense.",
-                            Level = 0,
-                            Name = "Shadow Lance"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "A shimmering barrier of force surrounds you.\r\n+5 AC until the start of your next turn.",
-                            Level = 0,
-                            Name = "Shielding Ward"
-                        });
-                });
-
             modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.Users", b =>
                 {
                     b.Property<int>("Id")
@@ -591,21 +526,6 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("RaceSpell", b =>
-                {
-                    b.HasOne("WorkGroup_RPGHelp.DL.Entities.Race", null)
-                        .WithMany()
-                        .HasForeignKey("RacesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WorkGroup_RPGHelp.DL.Entities.Spell", null)
-                        .WithMany()
-                        .HasForeignKey("SpellsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("RoleUsers", b =>
                 {
                     b.HasOne("WorkGroup_RPGHelp.DL.Entities.Role", null)
@@ -627,12 +547,6 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         .WithMany("Characteres")
                         .HasForeignKey("CampagnId");
 
-                    b.HasOne("WorkGroup_RPGHelp.DL.Entities.Race", "Race")
-                        .WithMany()
-                        .HasForeignKey("RaceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("WorkGroup_RPGHelp.DL.Entities.Users", "Users")
                         .WithMany("Characteres")
                         .HasForeignKey("UserId")
@@ -640,8 +554,6 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Campagns");
-
-                    b.Navigation("Race");
 
                     b.Navigation("Users");
                 });
