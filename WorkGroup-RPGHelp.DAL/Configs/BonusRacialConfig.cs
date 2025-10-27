@@ -17,12 +17,6 @@ namespace WorkGroup_RPGHelp.DAL.Configs
             builder.Property(b => b.Id).ValueGeneratedOnAdd();
 
             builder.Property(b => b.BonusName).IsRequired().HasMaxLength(100);
-
-            builder.HasData(
-                new BonusRacial { Id = 1, BonusName = "Dexterity", BonusValue = 2, MalusName = "Strength", MalusValue = -2 },
-                new BonusRacial { Id = 2, BonusName = "Intelligence", BonusValue = 2, MalusName = "Strength", MalusValue = -2 },
-                new BonusRacial { Id = 3, BonusName = "Constitution", BonusValue = 2, MalusName = "Charisma", MalusValue = -2 }
-            );
         }
     }
 }

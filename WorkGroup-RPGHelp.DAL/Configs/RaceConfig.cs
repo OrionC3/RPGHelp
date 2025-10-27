@@ -24,12 +24,6 @@ namespace WorkGroup_RPGHelp.DAL.Configs
                    .HasForeignKey<Race>(j => j.BonusRacialId);
 
             builder.HasMany(r => r.Spells).WithMany(o => o.Races);
-
-            builder.HasData(
-                new Race { Id = 1, Name = "Elf", BonusRacialId = 1 },
-                new Race { Id = 2, Name = "Orc", BonusRacialId = 2 },
-                new Race { Id = 3, Name = "Half Elf", BonusRacialId = 3 }
-            );
         }
     }
 }

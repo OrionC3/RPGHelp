@@ -36,6 +36,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
 
         [HttpGet("/self/{id}")]
         [Authorize]
+        // add role self 
         public ActionResult<UserIndexDto> GetUserSelf([FromRoute] int id)
         {
             Users user = _userService.GetUser(User.GetId());
