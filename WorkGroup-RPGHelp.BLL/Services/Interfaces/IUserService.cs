@@ -12,6 +12,7 @@ namespace WorkGroup_RPGHelp.BLL.Services.Interfaces
     {
         IEnumerable<Users> GetUsers(int page = 0);
         Users GetUser(int id);
+        Users GetSelfUser(int id);
         void Add(Users user);
         void Update(int id, Users user);
         void Delete(int id);

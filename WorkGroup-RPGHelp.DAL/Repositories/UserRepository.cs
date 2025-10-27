@@ -37,12 +37,20 @@ namespace WorkGroup_RPGHelp.DAL.Repositories
         public Users? GetCompletUser(int userId)
         {
             var user = _entities
+            .AsSplitQuery()
             .Include(u => u.Role)
             .Include(u => u.Characteres)
-            .Include(u => u.Campagns
-            .Where(c => c.IdGM == u.Id))
-            
+                .ThenInclude(c => c.Race)
             .FirstOrDefault(e => e.Id == userId);
+
+            if (user != null)
+            {
+                var filteredCampagns = _context.Campagns
+                    .Where(c => c.IdGM == user.Id)
+                    .ToList();
+
+                user.Campagns = filteredCampagns;
+            }
 
             return user;
         }

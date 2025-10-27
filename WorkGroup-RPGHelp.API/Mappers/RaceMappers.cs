@@ -8,6 +8,10 @@ namespace WorkGroup_RPGHelp.API.Mappers
     {
         public static RaceIndexDto ToRaceIndexDto(this Race r)
         {
+            if(r == null)
+            {
+                return null;
+            }
             return new RaceIndexDto()
             {
                 Id = r.Id,

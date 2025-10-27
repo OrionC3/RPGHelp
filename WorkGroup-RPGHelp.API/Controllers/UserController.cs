@@ -38,7 +38,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         [Authorize]
         public ActionResult<UserIndexDto> GetUserSelf()
         {
-            UserSelfDto user = _userService.GetUser(User.GetId()).ToUserSelfIndexDto();
+            UserSelfDto user = _userService.GetSelfUser(User.GetId()).ToUserSelfIndexDto();
 
             return Ok(user);
         }

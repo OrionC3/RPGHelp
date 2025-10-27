@@ -47,7 +47,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
                 return BadRequest();
             }
             Charactere charactere = form.ToCharactere();
-            charactere.Id = User.GetId();
+            charactere.UserId = User.GetId();
             charactere.CampagnId = null;
 
             Charactere id = _charactereService.Add(charactere);

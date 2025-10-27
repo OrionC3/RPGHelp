@@ -17,7 +17,7 @@ namespace WorkGroup_RPGHelp.API.Mappers
             return new UserSelfDto()
             {
                 Email = u.Email,
-                Role = u.Role,
+                Role = u.Role.Select(u => u.ToRoleIndexDto()).ToList(),
                 Characteres = u.Characteres.Select(u => u.ToCharactereIndexDto()).ToList(),
                 Campagns = u.Campagns.Select(u => u.ToCampagnIndexDto()).ToList(),
             };
