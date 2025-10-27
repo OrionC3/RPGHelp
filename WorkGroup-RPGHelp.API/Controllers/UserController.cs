@@ -5,6 +5,7 @@ using TI_Net2025_DemoCleanAsp.Extensions;
 using WorkGroup_RPGHelp.API.Mappers;
 using WorkGroup_RPGHelp.API.Models.UsersDto;
 using WorkGroup_RPGHelp.API.Services;
+using WorkGroup_RPGHelp.BLL.Exceptions.User;
 using WorkGroup_RPGHelp.BLL.Services;
 using WorkGroup_RPGHelp.BLL.Services.Interfaces;
 using WorkGroup_RPGHelp.DL.Entities;
@@ -30,6 +31,20 @@ namespace WorkGroup_RPGHelp.API.Controllers
         {
             UserIndexDto user = _userService.GetUser(id).ToUserIndexDto();
             return Ok(user);
+        }
+
+
+        [HttpGet("/self/{id}")]
+        [Authorize]
+        public ActionResult<UserIndexDto> GetUserSelf([FromRoute] int id)
+        {
+            Users user = _userService.GetUser(User.GetId());
+
+            if(user.Id != id)
+            {
+                throw new UserNotFoundException($"User with id {id} not found.");
+            }
+            return Ok(user.ToUserIndexDto());
         }
 
         [HttpGet]

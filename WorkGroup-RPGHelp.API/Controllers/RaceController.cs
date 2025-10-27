@@ -46,7 +46,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ActionResult Delete([FromRoute] int id)
         {
             if(!ModelState.IsValid)

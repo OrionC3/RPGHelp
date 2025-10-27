@@ -31,7 +31,8 @@ namespace WorkGroup_RPGHelp.BLL.Services
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Race race = _raceRepository.FindOne(i => i.Id == id);
+            _raceRepository.Delete(race);
         }
 
         public Race GetRace(int id)
