@@ -32,6 +32,18 @@ namespace WorkGroup_RPGHelp.BLL.Services
             }
             return user;
         }
+
+        public Users GetSelfUser(int id)
+        {
+            Users? user = _userRepository.GetCompletUser(id);
+
+            if (user == null)
+            {
+                throw new UserNotFoundException($"User with id : {id} not found.");
+            }
+            return user;
+        }
+
         public void Add(Users user)
         {
             if(_userRepository.FindOne(u => u.Email == user.Email) != null)
@@ -78,7 +90,34 @@ namespace WorkGroup_RPGHelp.BLL.Services
             return u;
         }
         // User add himself
-        public void SignUpCampagn(int userId, int campagnId)
+        public void JoinCampagn(int userId, int campagnId)
+        {
+            Users? user = _userRepository.FindOne(userId);
+
+            if (user == null)
+            {
+                throw new UserNotFoundException($"User with id {userId} not found");
+            }
+            Campagn? campagn = _campagnRepository.FindOne(campagnId);
+            if (campagn == null)
+            {
+                throw new CampagnNotFoundException($"Campagn with id {campagnId} not found");
+            }
+
+            //test user dans la campagne
+            bool hasAlreadyJoinCampagn = _userRepository.CharactereIsPlaying(user, campagn.Id);
+
+            if (!hasAlreadyJoinCampagn)
+            {
+                _userRepository.SignUpCampagn(user, campagn);
+            }
+            else
+            {
+                throw new Exception($"User {user} has already join the campagn");
+            }
+        }
+
+        public void LeaveCampagn(int userId, int campagnId)
         {
             Users? user = _userRepository.FindOne(userId);
 
@@ -97,21 +136,15 @@ namespace WorkGroup_RPGHelp.BLL.Services
 
             if (hasAlreadyJoinCampagn)
             {
-                //true
-                if(campagn.IdGM == user.Id)
-                {
-                    throw new UserLeaveCampagnException($"GM can't not leave the campagn");
-                }
                 _userRepository.SignOutCampagn(user, campagn);
             }
             else
             {
-                //false
-                _userRepository.SignUpCampagn(user, campagn);
+                throw new Exception($"User {user} has already leave the campagn");
             }
         }
         // GM add users
-        public void SignUpCampagn(int userId, int campagnId, int IdGM)
+        public void InvitCampagn(int userId, int campagnId, int IdGM)
         {
             Users? user = _userRepository.FindOne(userId);
             if(user == null)

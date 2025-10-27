@@ -11,6 +11,7 @@ namespace WorkGroup_RPGHelp.DAL.Repositories.Interfaces
     public interface ICampagnRepository : IBaseRepository<Campagn>
     {
         IEnumerable<Campagn> GetCampagns(int page = 0, Func<Campagn, bool>? predicate = null);
+        IEnumerable<Campagn> GetCampagnByUserId(int userId, int page = 0, Func<Campagn, bool>? predicate = null);
         public IEnumerable<Users> GetUsersCampagn(int campagnId, int page = 0);
         public IEnumerable<Charactere> GetCharacteresCampagn(int campagnId, int page = 0);
     }

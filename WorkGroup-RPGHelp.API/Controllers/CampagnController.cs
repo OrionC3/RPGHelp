@@ -39,6 +39,14 @@ namespace WorkGroup_RPGHelp.API.Controllers
             return Ok(c);
         }
 
+        [HttpGet("/mycampagn")]
+        [Authorize]
+        public ActionResult GetMyCampagn()
+        {
+            List<CampagnIndexDto> c = _campagnService.GetCampagnByUserId(User.GetId()).Select(c => c.ToCampagnIndexDto()).ToList();
+            return Ok(c);
+        }
+
         [HttpPost]
         [Authorize]
         public ActionResult AddCampagn([FromBody] CampagnFormDto form)

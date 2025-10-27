@@ -14,5 +14,6 @@ namespace WorkGroup_RPGHelp.DAL.Repositories.Interfaces
         public void SignUpCampagn(Users user, Campagn campagn);
         public void SignOutCampagn(Users user, Campagn campagn);
         public bool CharactereIsPlaying(Users user, int campagnId);
+        public Users GetCompletUser(int userId);
     }
 }

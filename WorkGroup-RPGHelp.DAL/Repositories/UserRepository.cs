@@ -34,6 +34,18 @@ namespace WorkGroup_RPGHelp.DAL.Repositories
             return _entities.Include(u => u.Role).FirstOrDefault(e => e.Email == email);
         }
 
+        public Users? GetCompletUser(int userId)
+        {
+            var user = _entities
+            .Include(u => u.Role)
+            .Include(u => u.Characteres)
+            .Include(u => u.Campagns
+            .Where(c => c.IdGM == u.Id))
+            
+            .FirstOrDefault(e => e.Id == userId);
+
+            return user;
+        }
         public void SignUpCampagn(Users user, Campagn campagn)
         {
             user.Campagns.Add(campagn);

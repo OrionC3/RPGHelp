@@ -51,6 +51,12 @@ namespace WorkGroup_RPGHelp.BLL.Services
             return campagn;
         }
 
+        public IEnumerable<Campagn> GetCampagnByUserId(int userId, int page = 0)
+        {
+            IEnumerable<Campagn> campagn = _campagnRepository.GetCampagnByUserId(userId, page);
+            return campagn;
+        }
+
         public Campagn GetCampagnByName(string name)
         {
             Campagn? campagn = _campagnRepository.FindOne(c => c.Name == name);

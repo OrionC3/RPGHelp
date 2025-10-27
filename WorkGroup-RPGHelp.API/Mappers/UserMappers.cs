@@ -12,6 +12,16 @@ namespace WorkGroup_RPGHelp.API.Mappers
                 Email = u.Email,
             };
         }
+        public static UserSelfDto ToUserSelfIndexDto(this Users u)
+        {
+            return new UserSelfDto()
+            {
+                Email = u.Email,
+                Role = u.Role,
+                Characteres = u.Characteres.Select(u => u.ToCharactereIndexDto()).ToList(),
+                Campagns = u.Campagns.Select(u => u.ToCampagnIndexDto()).ToList(),
+            };
+        }
 
         public static Users ToUser(this UserFormDto u)
         {

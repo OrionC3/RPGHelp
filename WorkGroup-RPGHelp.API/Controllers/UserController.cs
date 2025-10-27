@@ -38,9 +38,9 @@ namespace WorkGroup_RPGHelp.API.Controllers
         [Authorize]
         public ActionResult<UserIndexDto> GetUserSelf()
         {
-            Users user = _userService.GetUser(User.GetId());
+            UserSelfDto user = _userService.GetUser(User.GetId()).ToUserSelfIndexDto();
 
-            return Ok(user.ToUserIndexDto());
+            return Ok(user);
         }
 
         [HttpGet]
@@ -88,25 +88,37 @@ namespace WorkGroup_RPGHelp.API.Controllers
         
         [HttpPost("join-campagn/")]
         [Authorize]
-        public ActionResult SignUpCampagn([FromBody] int campagnId)
+        public ActionResult JoinCampagn([FromBody] int campagnId)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            _userService.SignUpCampagn(User.GetId(), campagnId);
+            _userService.JoinCampagn(User.GetId(), campagnId);
             return Created();
         }
 
         [HttpPost("invit-campagn/{userId}")]
         [Authorize]
-        public ActionResult SignUpCampagn([FromRoute] int userId, [FromBody] int campagnId)
+        public ActionResult InvitCampagn([FromRoute] int userId, [FromBody] int campagnId)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            _userService.SignUpCampagn(userId, campagnId, User.GetId());
+            _userService.InvitCampagn(userId, campagnId, User.GetId());
+            return Created();
+        }
+
+        [HttpPost("leave-campagn/")]
+        [Authorize]
+        public ActionResult LeaveCampagn([FromBody] int campagnId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            _userService.LeaveCampagn(User.GetId(), campagnId);
             return Created();
         }
     }
