@@ -59,7 +59,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
             {
                 return BadRequest();
             }
-            _campagnService.Update(id, form.ToCampagn());
+            _campagnService.Update(id, form.ToCampagn(), User.GetId());
             return NoContent();
         }
 
@@ -67,7 +67,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         [Authorize]
         public ActionResult Delete([FromRoute] int id)
         {
-            _campagnService.Delete(id);
+            _campagnService.Delete(id, User.GetId());
             return NoContent();
         }
 

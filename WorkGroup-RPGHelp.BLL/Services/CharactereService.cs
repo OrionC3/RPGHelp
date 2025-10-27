@@ -21,17 +21,22 @@ namespace WorkGroup_RPGHelp.BLL.Services
             _charactereRepository = charactereRepository;
             _userRepository = userRepository;
         }
-        public void Add(Charactere charactere)
+        public Charactere Add(Charactere charactere)
         {
-            _charactereRepository.Add(charactere);
+            return _charactereRepository.Add(charactere);
         }
 
-        public void Delete(int id)
+        public void Delete(int id, int userId)
         {
             Charactere? charactere = _charactereRepository.FindOne(id);
             if (charactere == null)
             {
                 throw new CharacterNotFoundException($"charactere with {id} doesn't exist");
+            }
+
+            if(charactere.Id != userId)
+            {
+                throw new Exception($"You are not owner");
             }
             _charactereRepository.Delete(charactere);
         }
@@ -65,12 +70,17 @@ namespace WorkGroup_RPGHelp.BLL.Services
             return _charactereRepository.GetCharacteresByUserId(userId, page);
         }
 
-        public void Update(int id, Charactere charactere)
+        public void Update(int id, Charactere charactere, int userId)
         {
             Charactere? c = _charactereRepository.FindOne(c => c.Id == id);
             if (c == null)
             {
                 throw new CampagnNotFoundException($"Campagn with {id} not found");
+            }
+
+            if(charactere.Id != userId)
+            {
+                throw new Exception("You are not owner");
             }
 
             if (charactere.Id > 0)

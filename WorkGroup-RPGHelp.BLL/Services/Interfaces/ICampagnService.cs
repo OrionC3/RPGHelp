@@ -14,8 +14,8 @@ namespace WorkGroup_RPGHelp.BLL.Services.Interfaces
         Campagn GetCampagnById(int id);
         Campagn GetCampagnByName(string name);
         void Add(Campagn campagn, int userid);
-        void Update(int id, Campagn campagn);
-        void Delete(int id);
+        void Update(int id, Campagn campagn, int userId);
+        void Delete(int id, int userId);
         void ChangeGM(int oldGMId, int newGMId, int campagnId);
         IEnumerable<Users> GetUsersCampagn(int campagnId, int page = 0);
         IEnumerable<Charactere> GetCharacteresCampagn(int campagnId, int page = 0);

@@ -3,9 +3,9 @@
     public class BonusRacialIndexDto
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int Bonus { get; set; }
-        public string Name2 { get; set; }
-        public int Malus { get; set; }
+        public string BonusName { get; set; }
+        public int BonusValue { get; set; }
+        public string MalusName { get; set; }
+        public int MalusValue { get; set; }
     }
 }

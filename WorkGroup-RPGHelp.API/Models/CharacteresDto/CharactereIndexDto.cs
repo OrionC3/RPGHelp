@@ -11,9 +11,7 @@ namespace WorkGroup_RPGHelp.API.Models.CharacteresDto
         public int Level { get; set; }
         public int XP { get; set; }
         public int UserId { get; set; }
-        public Users? Users { get; set; }
         public int? CampagnId { get; set; }
-        public Campagn? Campagns { get; set; }
         public RaceIndexDto? RaceIndexDto { get; set; }
     }
 }

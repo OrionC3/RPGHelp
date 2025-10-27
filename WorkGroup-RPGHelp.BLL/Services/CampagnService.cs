@@ -27,12 +27,16 @@ namespace WorkGroup_RPGHelp.BLL.Services
         }
 
 
-        public void Delete(int id)
+        public void Delete(int id, int userId)
         {
             Campagn? campagn = _campagnRepository.FindOne(id);
             if (campagn == null) 
             {
                 throw new CampagnNotFoundException($"Campagn with {id} doesn't exist");
+            }
+            if(campagn.IdGM != userId)
+            {
+                throw new Exception("You uare not owner");
             }
             _campagnRepository.Delete(campagn);
         }
@@ -62,12 +66,16 @@ namespace WorkGroup_RPGHelp.BLL.Services
             return _campagnRepository.GetCampagns(page);
         }
 
-        public void Update(int id, Campagn campagn)
+        public void Update(int id, Campagn campagn, int userId)
         {
             Campagn? c = _campagnRepository.FindOne(c => c.Id == id);
             if(c == null)
             {
                 throw new CampagnNotFoundException($"Campagn with {id} not found");
+            }
+            if(campagn.IdGM != userId)
+            {
+                throw new Exception("You are not owner");
             }
 
             if(campagn.Id > 0)

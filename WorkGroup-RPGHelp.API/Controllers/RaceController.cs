@@ -47,6 +47,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete([FromRoute] int id)
         {
             if(!ModelState.IsValid)

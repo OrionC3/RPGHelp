@@ -34,17 +34,12 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
 
-        [HttpGet("/self/{id}")]
+        [HttpGet("/self")]
         [Authorize]
-        // add role self 
-        public ActionResult<UserIndexDto> GetUserSelf([FromRoute] int id)
+        public ActionResult<UserIndexDto> GetUserSelf()
         {
             Users user = _userService.GetUser(User.GetId());
 
-            if(user.Id != id)
-            {
-                throw new UserNotFoundException($"User with id {id} not found.");
-            }
             return Ok(user.ToUserIndexDto());
         }
 

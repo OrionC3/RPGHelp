@@ -13,9 +13,9 @@ namespace WorkGroup_RPGHelp.BLL.Services.Interfaces
         IEnumerable<Charactere> GetCharacteresByUserId(int userId, int page = 0);
         Charactere GetCharactereById(int id);
         Charactere GetCharactereByName(string name);
-        void Add(Charactere charactere);
-        void Update(int id, Charactere charactere);
-        void Delete(int id);
+        Charactere Add(Charactere charactere);
+        void Update(int id, Charactere charactere, int userId);
+        void Delete(int id, int userId);
         void SignUpCampagn(int charactereId, int campagnId);
     }
 }

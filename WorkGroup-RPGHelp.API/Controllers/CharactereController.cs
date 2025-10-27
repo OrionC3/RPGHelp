@@ -46,8 +46,12 @@ namespace WorkGroup_RPGHelp.API.Controllers
             {
                 return BadRequest();
             }
-            _charactereService.Add(form.ToCharactere());
-            return Created();
+            Charactere charactere = form.ToCharactere();
+            charactere.Id = User.GetId();
+            charactere.CampagnId = null;
+
+            Charactere id = _charactereService.Add(charactere);
+            return Ok(id);
         }
 
         [HttpPut("{id}")]
@@ -58,7 +62,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
             {
                 return BadRequest();
             }
-            _charactereService.Update(id, form.ToCharactere());
+            _charactereService.Update(id, form.ToCharactere(), User.GetId());
             return NoContent();
         }
 
@@ -66,7 +70,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         [Authorize]
         public ActionResult Delete([FromRoute] int id)
         {
-            _charactereService.Delete(id);
+            _charactereService.Delete(id, User.GetId());
             return NoContent();
         }
 

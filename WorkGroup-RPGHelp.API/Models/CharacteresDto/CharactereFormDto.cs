@@ -5,7 +5,6 @@ namespace WorkGroup_RPGHelp.API.Models.CharacteresDto
 {
     public class CharactereFormDto
     {
-        public int Id { get; set; }
         [Required]
         [MaxLength(20)]
         public string Name { get; set; } = null!;
@@ -60,7 +59,5 @@ namespace WorkGroup_RPGHelp.API.Models.CharacteresDto
         [Required]
         [Range(0, Int32.MaxValue, ErrorMessage = "Invalid must be greater then 0")]
         public int Speed { get; set; }
-        public int UserId { get; set; }
-        public int? CampagnId { get; set; }
     }
 }
