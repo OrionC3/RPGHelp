@@ -24,9 +24,9 @@ namespace WorkGroup_RPGHelp.API.Controllers
 
         [HttpGet]
         [Authorize]
-        public ActionResult GetAllCampagn() 
+        public ActionResult GetAllCampagn(int page = 0) 
         {
-            List<Campagn> c = [.. _campagnService.GetCampagns()];
+            List<Campagn> c = [.. _campagnService.GetCampagns(page)];
             List<CampagnIndexDto> cidto = [.. c.Select(c => c.ToCampagnIndexDto())];
             return Ok(cidto);
         }
@@ -81,18 +81,18 @@ namespace WorkGroup_RPGHelp.API.Controllers
 
         [HttpGet("campagn-users/{campagnId}")]
         //[Authorize]
-        public ActionResult GetAllUsersByCampagn([FromRoute] int campagnId)
+        public ActionResult GetAllUsersByCampagn([FromRoute] int campagnId, int page = 0)
         {
-            List<Users> users = _campagnService.GetUsersCampagn(campagnId).ToList();
+            List<Users> users = _campagnService.GetUsersCampagn(campagnId, page).ToList();
             List<UserIndexDto> userIndexDtos = users.Select(u => u.ToUserIndexDto()).ToList();
             return Ok(userIndexDtos);
         }
 
         [HttpGet("campagn-characteres/{campagnId}")]
         //[Authorize]
-        public ActionResult GetAllcharacteresByCampagn([FromRoute] int campagnId)
+        public ActionResult GetAllcharacteresByCampagn([FromRoute] int campagnId, int page = 0)
         {
-            List<Charactere> characteres = _campagnService.GetCharacteresCampagn(campagnId).ToList();
+            List<Charactere> characteres = _campagnService.GetCharacteresCampagn(campagnId, page).ToList();
             List<CharactereIndexDto> characteresIndexDtos = characteres.Select(c => c.ToCharactereIndexDto()).ToList();
             return Ok(characteresIndexDtos);
         }

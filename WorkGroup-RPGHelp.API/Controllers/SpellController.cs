@@ -22,9 +22,9 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<SpellIndexDto> GetSpells()
+        public ActionResult<SpellIndexDto> GetSpells(int page = 0)
         {
-            List<SpellIndexDto> spell = _spellService.GetSpells().Select(s => s.ToSpellIndexDto()).ToList();
+            List<SpellIndexDto> spell = _spellService.GetSpells(page).Select(s => s.ToSpellIndexDto()).ToList();
             return Ok(spell);
         }
 

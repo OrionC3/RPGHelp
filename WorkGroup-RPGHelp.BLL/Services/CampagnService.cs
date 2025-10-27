@@ -92,14 +92,14 @@ namespace WorkGroup_RPGHelp.BLL.Services
             campagn.IdGM = newGMId;
             _campagnRepository.Update(campagn);
         }
-        public IEnumerable<Charactere> GetCharacteresCampagn(int campagnId)
+        public IEnumerable<Charactere> GetCharacteresCampagn(int campagnId, int page = 0)
         {
-            return _campagnRepository.GetCharacteresCampagn(campagnId);
+            return _campagnRepository.GetCharacteresCampagn(campagnId, page);
         }
 
-        public IEnumerable<Users> GetUsersCampagn(int campagnId)
+        public IEnumerable<Users> GetUsersCampagn(int campagnId, int page = 0)
         {
-            return _campagnRepository.GetUsersCampagn(campagnId);
+            return _campagnRepository.GetUsersCampagn(campagnId, page);
         }
     }
 }

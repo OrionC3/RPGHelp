@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Azure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace WorkGroup_RPGHelp.BLL.Services.Interfaces
         void Update(int id, Campagn campagn);
         void Delete(int id);
         void ChangeGM(int oldGMId, int newGMId, int campagnId);
-        IEnumerable<Users> GetUsersCampagn(int campagnId);
-        IEnumerable<Charactere> GetCharacteresCampagn(int campagnId);
+        IEnumerable<Users> GetUsersCampagn(int campagnId, int page = 0);
+        IEnumerable<Charactere> GetCharacteresCampagn(int campagnId, int page = 0);
     }
 }

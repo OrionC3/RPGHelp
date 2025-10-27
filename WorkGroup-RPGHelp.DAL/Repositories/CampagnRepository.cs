@@ -30,19 +30,28 @@ namespace WorkGroup_RPGHelp.DAL.Repositories
                 .Take(10);
         }
 
-        public IEnumerable<Users> GetUsersCampagn(int campagnId)
+        public IEnumerable<Users> GetUsersCampagn(int campagnId, int page = 0)
         {
-            return _entities.Where(c => c.Id == campagnId).SelectMany(c => c.Users);
+            IEnumerable<Users> query = _entities.Where(c => c.Id == campagnId).SelectMany(c => c.Users);
+            return query
+                .OrderBy(p => p.Id)
+                .Skip(page * 10)
+                .Take(10);
         }
 
-        public IEnumerable<Charactere> GetCharacteresCampagn(int campagnId)
+        public IEnumerable<Charactere> GetCharacteresCampagn(int campagnId, int page = 0)
         {
-            return _entities
+            IEnumerable<Charactere> query = _entities
                 .Include(c => c.Characteres)
                 .ThenInclude(ch => ch.Race)
                 .ThenInclude(r => r.BonusRacial)
                 .Where(c => c.Id == campagnId)
                 .SelectMany(c => c.Characteres);
+
+            return query
+                .OrderBy(p => p.Id)
+                .Skip(page * 10)
+                .Take(10);
         }
     }
 }

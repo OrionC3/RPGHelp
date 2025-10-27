@@ -21,9 +21,9 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<RaceIndexDto> GetRaces()
+        public ActionResult<RaceIndexDto> GetRaces(int page = 0)
         {
-            List<RaceIndexDto> race = _raceService.GetRaces().Select(r => r.ToRaceIndexDto()).ToList();
+            List<RaceIndexDto> race = _raceService.GetRaces(page).Select(r => r.ToRaceIndexDto()).ToList();
             return Ok(race);
         }
 
