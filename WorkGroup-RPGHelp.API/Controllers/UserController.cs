@@ -30,7 +30,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         public ActionResult<UserIndexDto> GetUser([FromRoute] int id)
         {
             UserIndexDto user = _userService.GetUser(id).ToUserIndexDto();
-            return Ok(user);
+            return Ok(new { Data = user });
         }
 
 
@@ -49,7 +49,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
             List<UserIndexDto> users = _userService.GetUsers(page)
                 .Select(u => u.ToUserIndexDto())
                 .ToList();
-            return Ok(users);
+            return Ok(new { Count = users.Count, Data = users });
         }
 
         [HttpPost("register")]

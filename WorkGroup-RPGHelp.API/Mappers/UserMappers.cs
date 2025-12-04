@@ -9,6 +9,7 @@ namespace WorkGroup_RPGHelp.API.Mappers
         {
             return new UserIndexDto()
             {
+                Id = u.Id,
                 Email = u.Email,
             };
         }
