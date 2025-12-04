@@ -20,15 +20,15 @@ namespace WorkGroup_RPGHelp.API.Services
         {
             List<Claim> claims = new List<Claim>()
             {
-                new Claim("id", user.Id.ToString()),
+                new Claim(ClaimTypes.Sid, user.Id.ToString()),
                 //new Claim(ClaimTypes.Email, user.Email.ToString())
             };
             foreach(var item in user.Role)
             {
-                claims.Add(new Claim("role", item.Name.ToString()));
+                claims.Add(new Claim(ClaimTypes.Role, item.Name.ToString()));
             }
 
-            string secrekey = _config["Jwt:Key"];
+            string secrekey = _config["Jwt:Key"]!;
             SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secrekey));
             SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 

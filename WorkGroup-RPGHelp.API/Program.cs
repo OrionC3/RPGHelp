@@ -46,6 +46,23 @@ c.AddSecurityRequirement(new OpenApiSecurityRequirement {
     });
 });
 
+#region CORS
+builder.Services.AddCors(cors =>
+{
+    // Free For All - Angular
+    cors.AddPolicy("FFA", policy =>
+    {
+        policy.WithOrigins(["http://localhost:4200"])
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+
+    // TODO : production plus strict et avec la bonne URL
+
+});
+#endregion
+
 #region DbContext
 // Add DB Context
 builder.Services.AddDbContext<RPGHelpContext>(b =>
@@ -104,6 +121,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("FFA");
 
 app.UseHttpsRedirection();
 

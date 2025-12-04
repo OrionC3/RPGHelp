@@ -34,13 +34,12 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
 
-        [HttpGet("/self")]
+        [HttpGet("self")]
         [Authorize]
         public ActionResult<UserIndexDto> GetUserSelf()
         {
             UserSelfDto user = _userService.GetSelfUser(User.GetId()).ToUserSelfIndexDto();
-
-            return Ok(user);
+            return Ok(new { Data = user });
         }
 
         [HttpGet]
