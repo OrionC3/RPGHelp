@@ -43,7 +43,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
 
         public Charactere GetCharactereById(int id)
         {
-            Charactere? charactere = _charactereRepository.FindOne(c => c.Id == id);
+            Charactere? charactere = _charactereRepository.GetCharacteresById(id);
             if (charactere == null)
             {
                 throw new CharacterNotFoundException($"charactere with {id} not found");

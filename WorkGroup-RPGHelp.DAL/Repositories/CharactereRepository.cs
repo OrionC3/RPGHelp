@@ -43,5 +43,11 @@ namespace WorkGroup_RPGHelp.DAL.Repositories
                 .Skip(page * 10)
                 .Take(10);
         }
+
+        public Charactere? GetCharacteresById(int id)
+        {
+            Charactere? query = _entities.Include(c => c.Race).ThenInclude(r => r.BonusRacial).FirstOrDefault(c => c.Id == id);
+            return query;
+        }
     }
 }
