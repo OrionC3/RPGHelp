@@ -7,6 +7,7 @@ namespace WorkGroup_RPGHelp.API.Models.UsersDto
 {
     public class UserSelfDto
     {
+        public int Id { get; set; }
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
         public List<RoleIndexDto> Role { get; set; } = [];
