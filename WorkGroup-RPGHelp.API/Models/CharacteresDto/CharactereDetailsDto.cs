@@ -23,7 +23,7 @@ namespace WorkGroup_RPGHelp.API.Models.CharacteresDto
         public int Level { get; set; }
         public int XP { get; set; }
         public int Speed { get; set; }
-        public int RaceId { get; set; }
+        public int IdRace { get; set; }
         public RaceIndexDto? RaceIndexDto { get; set; }
 
     }

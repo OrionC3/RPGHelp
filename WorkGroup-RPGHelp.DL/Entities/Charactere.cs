@@ -31,7 +31,7 @@ namespace WorkGroup_RPGHelp.DL.Entities
         public Users? Users { get; set; }
         public int? CampagnId { get; set; }
         public Campagn? Campagns { get; set; }
-        public int RaceId { get; set; }
+        public int IdRace { get; set; }
         public Race? Race { get; set; }
 
     }
