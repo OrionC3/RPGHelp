@@ -23,7 +23,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
 
         [HttpGet]
         [Authorize]
-        public ActionResult GetAllCharactereByUserId(int page = 0)
+        public ActionResult GetAllCharactereByUserId([FromQuery] int page = 0)
         {
             List<Charactere> c = [.. _charactereService.GetCharacteresByUserId(User.GetId(), page)];
             List<CharactereIndexDto> cidto = [.. c.Select(c => c.ToCharactereIndexDto())];

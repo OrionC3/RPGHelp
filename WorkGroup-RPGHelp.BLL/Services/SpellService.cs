@@ -51,7 +51,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
 
         public IEnumerable<Spell> GetSpells(int page = 0)
         {
-            return _spellRepository.GetSpells();
+            return _spellRepository.GetSpells(page);
         }
 
         public void Update(int id, Spell spell)

@@ -48,7 +48,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
 
         public IEnumerable<Race> GetRaces(int page = 0)
         {
-            return _raceRepository.GetRaces();
+            return _raceRepository.GetRaces(page);
         }
 
         public void Update(int id, Race race)

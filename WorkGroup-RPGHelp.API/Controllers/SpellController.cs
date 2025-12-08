@@ -22,7 +22,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<SpellIndexDto> GetSpells(int page = 0)
+        public ActionResult<SpellIndexDto> GetSpells([FromQuery] int page = 0)
         {
             List<SpellIndexDto> spell = _spellService.GetSpells(page).Select(s => s.ToSpellIndexDto()).ToList();
             return Ok(spell);

@@ -24,7 +24,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
 
         [HttpGet]
         [Authorize]
-        public ActionResult GetAllCampagn(int page = 0) 
+        public ActionResult GetAllCampagn([FromQuery] int page = 0) 
         {
             List<Campagn> c = [.. _campagnService.GetCampagns(page)];
             List<CampagnIndexDto> cidto = [.. c.Select(c => c.ToCampagnIndexDto())];
