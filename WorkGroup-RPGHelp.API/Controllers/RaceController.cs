@@ -24,14 +24,14 @@ namespace WorkGroup_RPGHelp.API.Controllers
         public ActionResult<RaceIndexDto> GetRaces(int page = 0)
         {
             List<RaceIndexDto> race = _raceService.GetRaces(page).Select(r => r.ToRaceIndexDto()).ToList();
-            return Ok(race);
+            return Ok(new { Data = race, Count = race.Count });
         }
 
         [HttpGet("{id}")]
         public ActionResult<RaceIndexDto> GetRace([FromRoute] int id)
         {
             RaceIndexDto race = _raceService.GetRace(id).ToRaceIndexDto();
-            return Ok(race);
+            return Ok(new { Data = race });
         }
 
         [HttpPost]
