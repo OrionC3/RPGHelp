@@ -125,5 +125,10 @@ namespace WorkGroup_RPGHelp.BLL.Services
                 throw new CampagnUserException($"User is not playing in the campagn {campagnId}");
             }
         }
+
+        public long Count(int userId)
+        {
+            return _charactereRepository.Count((c) => c.UserId == userId);
+        }
     }
 }

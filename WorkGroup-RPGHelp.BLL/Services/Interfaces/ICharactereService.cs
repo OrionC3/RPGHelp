@@ -17,5 +17,6 @@ namespace WorkGroup_RPGHelp.BLL.Services.Interfaces
         void Update(int id, Charactere charactere, int userId);
         void Delete(int id, int userId);
         void SignUpCampagn(int charactereId, int campagnId);
+        long Count(int userId);
     }
 }

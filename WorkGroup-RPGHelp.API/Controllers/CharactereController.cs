@@ -27,7 +27,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         {
             List<Charactere> c = [.. _charactereService.GetCharacteresByUserId(User.GetId(), page)];
             List<CharactereIndexDto> cidto = [.. c.Select(c => c.ToCharactereIndexDto())];
-            return Ok(new { Count = cidto.Count, Data = cidto });
+            return Ok(new { Count = _charactereService.Count(User.GetId()), Data = cidto });
         }
 
         [HttpGet("{id}")]
