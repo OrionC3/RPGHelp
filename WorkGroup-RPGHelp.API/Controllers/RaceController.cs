@@ -5,6 +5,7 @@ using System.Reflection.Metadata.Ecma335;
 using WorkGroup_RPGHelp.API.Mappers;
 using WorkGroup_RPGHelp.API.Models.RaceDto;
 using WorkGroup_RPGHelp.API.Services;
+using WorkGroup_RPGHelp.BLL.Services;
 using WorkGroup_RPGHelp.BLL.Services.Interfaces;
 
 namespace WorkGroup_RPGHelp.API.Controllers
@@ -24,7 +25,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         public ActionResult<RaceIndexDto> GetRaces([FromQuery] int page = 0)
         {
             List<RaceIndexDto> race = _raceService.GetRaces(page).Select(r => r.ToRaceIndexDto()).ToList();
-            return Ok(new { Data = race, Count = race.Count });
+            return Ok(new { Data = race, Count = _raceService.Count() });
         }
 
         [HttpGet("{id}")]

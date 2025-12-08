@@ -55,5 +55,10 @@ namespace WorkGroup_RPGHelp.BLL.Services
         {
             throw new NotImplementedException();
         }
+
+        public long Count()
+        {
+            return _raceRepository.Count();
+        }
     }
 }
