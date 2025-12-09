@@ -8,7 +8,7 @@ namespace WorkGroup_RPGHelp.API.Models.CharacteresDto
         [Required]
         [MaxLength(20)]
         public string Name { get; set; } = null!;
-        public int IdRace { get; set; }
+        public int RaceId { get; set; }
         [Required]
         [Range (0, Int32.MaxValue, ErrorMessage = "Invalid must be greater then 0")]
         public int PVMax { get; set; }

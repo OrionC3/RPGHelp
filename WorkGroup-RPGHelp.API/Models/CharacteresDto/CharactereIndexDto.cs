@@ -7,7 +7,7 @@ namespace WorkGroup_RPGHelp.API.Models.CharacteresDto
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;
-        public int IdRace { get; set; }
+        public int RaceId { get; set; }
         public int Level { get; set; }
         public int XP { get; set; }
         public int UserId { get; set; }

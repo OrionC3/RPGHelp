@@ -81,5 +81,6 @@ namespace WorkGroup_RPGHelp.DAL.Repositories
 
             return _context.SaveChanges() == 1;
         }
+        // TODO create function toNext() & toPrevious()
     }
 }
