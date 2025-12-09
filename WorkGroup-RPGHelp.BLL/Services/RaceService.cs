@@ -28,7 +28,6 @@ namespace WorkGroup_RPGHelp.BLL.Services
             _raceRepository.Add(race);
         }
 
-
         public void Delete(int id)
         {
             Race race = _raceRepository.FindOne(i => i.Id == id);
@@ -56,9 +55,22 @@ namespace WorkGroup_RPGHelp.BLL.Services
             throw new NotImplementedException();
         }
 
-        public long Count()
+        public long Count(string? name = null)
         {
-            return _raceRepository.Count();
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return _raceRepository.Count();
+            }
+
+            string searchTerm = name.Trim().ToLower();
+            return _raceRepository.Count((r) =>
+                r.Name != null && r.Name.ToLower().Contains(searchTerm)
+            );
+        }
+
+        public IEnumerable<Race> GetRacesByName(string name)
+        {
+            return _raceRepository.FindMany(r => r.Name.ToLower().Contains(name));
         }
     }
 }

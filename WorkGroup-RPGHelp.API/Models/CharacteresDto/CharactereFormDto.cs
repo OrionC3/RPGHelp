@@ -51,7 +51,7 @@ namespace WorkGroup_RPGHelp.API.Models.CharacteresDto
         [Range(0, Int32.MaxValue, ErrorMessage = "Invalid must be greater then 0")]
         public int WillpowerSave { get; set; }
         [Required]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Invalid must be greater then 1")]
+        [Range(0, Int32.MaxValue, ErrorMessage = "Invalid must be greater then 0")]
         public int Level { get; set; }
         [Required]
         [Range(0, Int32.MaxValue, ErrorMessage = "Invalid must be greater then 0")]

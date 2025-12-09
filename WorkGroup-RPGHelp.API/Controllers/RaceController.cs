@@ -58,5 +58,12 @@ namespace WorkGroup_RPGHelp.API.Controllers
             _raceService.Delete(id);
             return NoContent();
         }
+
+        [HttpGet("byname")]
+        public ActionResult<RaceIndexDto> GetRacesByName([FromQuery] string name)
+        {
+            List<RaceIndexDto> race = _raceService.GetRacesByName(name).Select(r => r.ToRaceIndexDto()).ToList();
+            return Ok(new { Data = race, Count = _raceService.Count(name) });
+        }
     }
 }

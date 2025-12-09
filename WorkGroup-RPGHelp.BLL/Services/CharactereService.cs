@@ -34,7 +34,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
                 throw new CharacterNotFoundException($"charactere with {id} doesn't exist");
             }
 
-            if(charactere.Id != userId)
+            if(charactere.Id == userId)
             {
                 throw new Exception($"You are not owner");
             }
