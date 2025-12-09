@@ -79,7 +79,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
             {
                 throw new CampagnNotFoundException($"Campagn with {id} not found");
             }
-            if(campagn.IdGM != userId)
+            if(campagn.IdGM == userId)
             {
                 throw new Exception("You are not owner");
             }
