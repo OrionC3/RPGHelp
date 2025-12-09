@@ -11,7 +11,7 @@ namespace WorkGroup_RPGHelp.API.Mappers
             {
                 Id = charactere.Id,
                 Name = charactere.Name,
-                IdRace = charactere.RaceId,
+                RaceId = charactere.RaceId,
                 Level = charactere.Level,
                 UserId = charactere.UserId,
                 CampagnId = charactere.CampagnId,
@@ -68,7 +68,7 @@ namespace WorkGroup_RPGHelp.API.Mappers
                 Level = charactere.Level,
                 XP = charactere.XP,
                 Speed = charactere.Speed,
-                RaceId = charactere.IdRace,
+                RaceId = charactere.RaceId,
             };
         }
     }
