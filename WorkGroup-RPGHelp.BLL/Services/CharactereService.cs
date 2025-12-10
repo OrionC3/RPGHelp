@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkGroup_RPGHelp.BLL.Exceptions;
 using WorkGroup_RPGHelp.BLL.Exceptions.Campagn;
 using WorkGroup_RPGHelp.BLL.Exceptions.Character;
 using WorkGroup_RPGHelp.BLL.Services.Interfaces;
@@ -36,7 +37,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
 
             if(charactere.Id == userId)
             {
-                throw new Exception($"You are not owner");
+                throw new NotOwnerException($"You are not owner");
             }
             _charactereRepository.Delete(charactere);
         }
@@ -80,7 +81,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
 
             if(charactere.Id != userId)
             {
-                throw new Exception("You are not owner");
+                throw new NotOwnerException("You are not owner");
             }
 
             if (charactere.Id > 0)
