@@ -16,5 +16,6 @@ namespace WorkGroup_RPGHelp.BLL.Services.Interfaces
         void Delete(int id);
         long Count(string? name = null);
         IEnumerable<Race> GetRacesByName(string name);
+        Race GetRaceByName(string name);
     }
 }

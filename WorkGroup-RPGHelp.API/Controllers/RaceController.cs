@@ -65,5 +65,12 @@ namespace WorkGroup_RPGHelp.API.Controllers
             List<RaceIndexDto> race = _raceService.GetRacesByName(name).Select(r => r.ToRaceIndexDto()).ToList();
             return Ok(new { Data = race, Count = _raceService.Count(name) });
         }
+
+        [HttpGet("getidbyname")]
+        public ActionResult<RaceIndexDto> GetRaceIdByName([FromQuery] string name)
+        {
+            RaceIndexDto race = _raceService.GetRaceByName(name).ToRaceIndexDto();
+            return Ok(new { Data = race });
+        }
     }
 }
