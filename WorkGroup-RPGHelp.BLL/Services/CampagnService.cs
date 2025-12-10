@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkGroup_RPGHelp.BLL.Exceptions;
 using WorkGroup_RPGHelp.BLL.Exceptions.Campagn;
 using WorkGroup_RPGHelp.BLL.Exceptions.User;
 using WorkGroup_RPGHelp.BLL.Services.Interfaces;
@@ -36,7 +37,7 @@ namespace WorkGroup_RPGHelp.BLL.Services
             }
             if(campagn.IdGM != userId)
             {
-                throw new Exception("You uare not owner");
+                throw new NotOwnerException("You uare not owner");
             }
             _campagnRepository.Delete(campagn);
         }
@@ -79,9 +80,9 @@ namespace WorkGroup_RPGHelp.BLL.Services
             {
                 throw new CampagnNotFoundException($"Campagn with {id} not found");
             }
-            if(campagn.IdGM == userId)
+            if(campagn.IdGM != userId)
             {
-                throw new Exception("You are not owner");
+                throw new NotOwnerException("You are not owner");
             }
 
             if(campagn.Id > 0)
