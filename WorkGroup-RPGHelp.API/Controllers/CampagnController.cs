@@ -93,7 +93,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         {
             List<Users> users = _campagnService.GetUsersCampagn(campagnId, page).ToList();
             List<UserIndexDto> userIndexDtos = users.Select(u => u.ToUserIndexDto()).ToList();
-            return Ok(userIndexDtos);
+            return Ok(new { Data = userIndexDtos });
         }
 
         [HttpGet("campagn-characteres/{campagnId}")]
