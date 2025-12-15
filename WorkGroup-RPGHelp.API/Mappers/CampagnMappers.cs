@@ -21,5 +21,17 @@ namespace WorkGroup_RPGHelp.API.Mappers
                 Name = campagn.Name,
             };
         }
+
+        public static CampagnDetailsDto ToCompagnDetailsDto(this Campagn campagn)
+        {
+            return new CampagnDetailsDto()
+            {
+                Id = campagn.Id,
+                Name = campagn.Name,
+                Description = campagn.Description,
+                IdGM = campagn.IdGM,
+                isFinish = campagn.IsFinish,
+            };
+        }
     }
 }

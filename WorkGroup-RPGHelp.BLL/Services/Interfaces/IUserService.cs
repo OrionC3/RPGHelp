@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Azure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
@@ -20,5 +21,7 @@ namespace WorkGroup_RPGHelp.BLL.Services.Interfaces
         void JoinCampagn(int userId, int campagnId);
         void LeaveCampagn(int userId, int campagnId);
         void InvitCampagn(int userId, int campagnId, int IdGM);
+        IEnumerable<Users> GetUsersByEmail(string search);
+        long Count(string search = "");
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TI_Net2025_DemoCleanAsp.Extensions;
 using WorkGroup_RPGHelp.API.Mappers;
+using WorkGroup_RPGHelp.API.Models;
 using WorkGroup_RPGHelp.API.Models.UsersDto;
 using WorkGroup_RPGHelp.API.Services;
 using WorkGroup_RPGHelp.BLL.Exceptions.User;
@@ -97,15 +98,17 @@ namespace WorkGroup_RPGHelp.API.Controllers
             return Created();
         }
 
-        [HttpPost("invit-campagn/{userId}")]
+        [HttpPost("invit-campagn")]
         [Authorize]
-        public ActionResult InvitCampagn([FromRoute] int userId, [FromBody] int campagnId)
+        public ActionResult InvitCampagn([FromBody] AddRemoveUserDto dto)
         {
+            Console.WriteLine("userId" + dto.userId);
+            Console.WriteLine("campagnId" + dto.campagnId);
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            _userService.InvitCampagn(userId, campagnId, User.GetId());
+            _userService.InvitCampagn(dto.userId, dto.campagnId, User.GetId());
             return Created();
         }
 
@@ -119,6 +122,29 @@ namespace WorkGroup_RPGHelp.API.Controllers
             }
             _userService.LeaveCampagn(User.GetId(), campagnId);
             return Created();
+        }
+
+        [HttpPost("remove-player-campagn/")]
+        [Authorize]
+        public ActionResult RemovePlayerCampagn([FromBody] AddRemoveUserDto dto)
+        {
+            Console.WriteLine("userId" + dto.userId);
+            Console.WriteLine("campagnId" + dto.campagnId);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            _userService.LeaveCampagn(dto.userId, dto.campagnId);
+            return Created();
+        }
+
+
+        [HttpGet("search")]
+        [Authorize]
+        public ActionResult SearchUser([FromQuery] string search)
+        {
+            List<UserIndexDto> uid = _userService.GetUsersByEmail(search).Select(u => u.ToUserIndexDto()).ToList();
+            return Ok(new { Data = uid, Count = _userService.Count(search) });
         }
     }
 }

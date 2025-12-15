@@ -1,9 +1,10 @@
 ﻿using Isopoh.Cryptography.Argon2;
-using WorkGroup_RPGHelp.BLL.Services.Interfaces;
-using WorkGroup_RPGHelp.DAL.Repositories.Interfaces;
-using WorkGroup_RPGHelp.BLL.Exceptions.User;
-using WorkGroup_RPGHelp.DL.Entities;
 using WorkGroup_RPGHelp.BLL.Exceptions.Campagn;
+using WorkGroup_RPGHelp.BLL.Exceptions.User;
+using WorkGroup_RPGHelp.BLL.Services.Interfaces;
+using WorkGroup_RPGHelp.DAL.Repositories;
+using WorkGroup_RPGHelp.DAL.Repositories.Interfaces;
+using WorkGroup_RPGHelp.DL.Entities;
 
 namespace WorkGroup_RPGHelp.BLL.Services
 {
@@ -162,6 +163,17 @@ namespace WorkGroup_RPGHelp.BLL.Services
                 throw new ($"User with id {IdGM} is not GM");
             }
             _userRepository.SignUpCampagn(user, campagn);
+        }
+
+
+        public long Count(string search)
+        {
+            return _userRepository.Count((c) => c.Email.Contains(search));
+        }
+
+        public IEnumerable<Users> GetUsersByEmail(string search)
+        {
+            return _userRepository.FindMany((u) => u.Email.Contains(search));
         }
     }
 }

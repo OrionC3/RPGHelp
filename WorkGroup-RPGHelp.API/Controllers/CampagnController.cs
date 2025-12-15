@@ -35,8 +35,8 @@ namespace WorkGroup_RPGHelp.API.Controllers
         [Authorize]
         public ActionResult GetCampagn([FromRoute] int id)
         {
-            CampagnIndexDto c = _campagnService.GetCampagnById(id).ToCampagnIndexDto();
-            return Ok(c);
+            CampagnDetailsDto c = _campagnService.GetCampagnById(id).ToCompagnDetailsDto();
+            return Ok(new { Data = c });
         }
 
         [HttpGet("/mycampagn")]
