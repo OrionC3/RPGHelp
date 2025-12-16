@@ -25,6 +25,7 @@ namespace WorkGroup_RPGHelp.API.Models.CharacteresDto
         public int Speed { get; set; }
         public int RaceId { get; set; }
         public RaceIndexDto? RaceIndexDto { get; set; }
+        public int UserId { get; set; }
 
     }
 }

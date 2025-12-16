@@ -76,10 +76,10 @@ namespace WorkGroup_RPGHelp.BLL.Services
             Charactere? c = _charactereRepository.FindOne(c => c.Id == id);
             if (c == null)
             {
-                throw new CampagnNotFoundException($"Campagn with {id} not found");
+                throw new CharacterNotFoundException($"Character with {id} not found");
             }
 
-            if(charactere.Id != userId)
+            if(charactere.UserId != userId)
             {
                 throw new NotOwnerException("You are not owner");
             }
@@ -88,7 +88,27 @@ namespace WorkGroup_RPGHelp.BLL.Services
             {
                 c.Id = charactere.Id;
             }
+
             c.Name = charactere.Name;
+            c.PVMax = charactere.PVMax;
+            c.PVCurrent = charactere.PVCurrent;
+            c.Strength = charactere.Strength;
+            c.Dexterity = charactere.Dexterity;
+            c.Constitution = charactere.Constitution;
+            c.Intelligence = charactere.Intelligence;
+            c.Wisdom = charactere.Wisdom;
+            c.Charisma = charactere.Charisma;
+            c.Defence = charactere.Defence;
+            c.Initiative = charactere.Initiative;
+            c.BaseAttackBonus = charactere.BaseAttackBonus;
+            c.FortitudeSave = charactere.FortitudeSave;
+            c.ReflexeSave = charactere.ReflexeSave;
+            c.WillpowerSave = charactere.WillpowerSave;
+            c.Level = charactere.Level;
+            c.XP = charactere.XP;
+            c.Speed = charactere.Speed;
+            c.RaceId = charactere.RaceId;
+            c.UserId = charactere.UserId;
 
             _charactereRepository.Update(c);
         }

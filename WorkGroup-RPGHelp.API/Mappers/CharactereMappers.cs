@@ -43,6 +43,7 @@ namespace WorkGroup_RPGHelp.API.Mappers
                 Speed = charactere.Speed,
                 RaceId = charactere.RaceId,
                 RaceIndexDto = charactere.Race.ToRaceIndexDto(),
+                UserId = charactere.UserId,
             };
         }
 
@@ -69,6 +70,7 @@ namespace WorkGroup_RPGHelp.API.Mappers
                 XP = charactere.XP,
                 Speed = charactere.Speed,
                 RaceId = charactere.RaceId,
+                UserId = charactere.UserId,
             };
         }
     }
