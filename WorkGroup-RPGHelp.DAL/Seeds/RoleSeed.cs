@@ -10,15 +10,17 @@ namespace WorkGroup_RPGHelp.DAL.Configs
         {
             builder.HasData(
                 new Role { Id = 1, Name = "Admin" },
-                new Role { Id = 2, Name = "GM" },
-                new Role { Id = 3, Name = "Players" }
+                new Role { Id = 2, Name = "User" }
             );
 
             builder.HasMany(r => r.User)
                    .WithMany(u => u.Role).UsingEntity(j => j.HasData(
                        new { UserId = 1, RoleId = 1 },
                        new { UserId = 1, RoleId = 2 },
-                       new { UserId = 2, RoleId = 3 }
+                       new { UserId = 2, RoleId = 2 },
+                       new { UserId = 3, RoleId = 2 },
+                       new { UserId = 4, RoleId = 1 },
+                       new { UserId = 4, RoleId = 2 }
                        ));
         }
     }

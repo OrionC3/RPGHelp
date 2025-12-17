@@ -71,15 +71,17 @@ builder.Services.AddDbContext<RPGHelpContext>(b =>
 #endregion
 
 #region Repositories
-builder.Services.AddScoped <IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICampagnRepository, CampagnRepository>();
 builder.Services.AddScoped<IRaceRepository, RaceRepository>();
 builder.Services.AddScoped<ICharactereRepository, CharactereRepository>();
 builder.Services.AddScoped<ISpellRepository, SpellRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+
 #endregion
 
 #region Services
-builder.Services.AddScoped <IUserService, UserService>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICampagnService, CampagnService>();
 builder.Services.AddScoped<ICharactereService, CharactereService>();
 builder.Services.AddScoped<IRaceService, RaceService>();

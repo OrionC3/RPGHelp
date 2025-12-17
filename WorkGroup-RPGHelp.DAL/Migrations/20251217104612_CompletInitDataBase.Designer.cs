@@ -12,8 +12,8 @@ using WorkGroup_RPGHelp.DAL.Contexts;
 namespace WorkGroup_RPGHelp.DAL.Migrations
 {
     [DbContext(typeof(RPGHelpContext))]
-    [Migration("20251020115859_Init campagn")]
-    partial class Initcampagn
+    [Migration("20251217104612_CompletInitDataBase")]
+    partial class CompletInitDataBase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,38 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                     b.HasIndex("UsersId");
 
                     b.ToTable("CampagnUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            CampagnsId = 1,
+                            UsersId = 1
+                        },
+                        new
+                        {
+                            CampagnsId = 2,
+                            UsersId = 1
+                        },
+                        new
+                        {
+                            CampagnsId = 1,
+                            UsersId = 2
+                        });
+                });
+
+            modelBuilder.Entity("RaceSpell", b =>
+                {
+                    b.Property<int>("RacesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpellsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RacesId", "SpellsId");
+
+                    b.HasIndex("SpellsId");
+
+                    b.ToTable("RaceSpell");
                 });
 
             modelBuilder.Entity("RoleUsers", b =>
@@ -67,8 +99,23 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         },
                         new
                         {
-                            RoleId = 3,
+                            RoleId = 2,
                             UserId = 2
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            UserId = 3
+                        },
+                        new
+                        {
+                            RoleId = 1,
+                            UserId = 4
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            UserId = 4
                         });
                 });
 
@@ -113,7 +160,7 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                             Id = 2,
                             BonusName = "Intelligence",
                             BonusValue = 2,
-                            MalusName = "Strength",
+                            MalusName = "Wisdom",
                             MalusValue = -2
                         },
                         new
@@ -122,6 +169,166 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                             BonusName = "Constitution",
                             BonusValue = 2,
                             MalusName = "Charisma",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BonusName = "Strength",
+                            BonusValue = 2,
+                            MalusName = "Intelligence",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BonusName = "Wisdom",
+                            BonusValue = 2,
+                            MalusName = "Dexterity",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BonusName = "Charisma",
+                            BonusValue = 2,
+                            MalusName = "Constitution",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            BonusName = "Dexterity",
+                            BonusValue = 2,
+                            MalusName = "Charisma",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            BonusName = "Strength",
+                            BonusValue = 2,
+                            MalusName = "Wisdom",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            BonusName = "Intelligence",
+                            BonusValue = 2,
+                            MalusName = "Strength",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            BonusName = "Constitution",
+                            BonusValue = 2,
+                            MalusName = "Dexterity",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            BonusName = "Wisdom",
+                            BonusValue = 2,
+                            MalusName = "Charisma",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 12,
+                            BonusName = "Charisma",
+                            BonusValue = 2,
+                            MalusName = "Strength",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 13,
+                            BonusName = "Intelligence",
+                            BonusValue = 2,
+                            MalusName = "Constitution",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 14,
+                            BonusName = "Strength",
+                            BonusValue = 2,
+                            MalusName = "Dexterity",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 15,
+                            BonusName = "Dexterity",
+                            BonusValue = 2,
+                            MalusName = "Intelligence",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 16,
+                            BonusName = "Constitution",
+                            BonusValue = 2,
+                            MalusName = "Wisdom",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 17,
+                            BonusName = "Wisdom",
+                            BonusValue = 2,
+                            MalusName = "Strength",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 18,
+                            BonusName = "Charisma",
+                            BonusValue = 2,
+                            MalusName = "Intelligence",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 19,
+                            BonusName = "Strength",
+                            BonusValue = 2,
+                            MalusName = "Constitution",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 20,
+                            BonusName = "Dexterity",
+                            BonusValue = 2,
+                            MalusName = "Wisdom",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 21,
+                            BonusName = "Intelligence",
+                            BonusValue = 2,
+                            MalusName = "Charisma",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 22,
+                            BonusName = "Constitution",
+                            BonusValue = 2,
+                            MalusName = "Strength",
+                            MalusValue = -2
+                        },
+                        new
+                        {
+                            Id = 23,
+                            BonusName = "Wisdom",
+                            BonusValue = 2,
+                            MalusName = "Intelligence",
                             MalusValue = -2
                         });
                 });
@@ -160,7 +367,7 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         {
                             Id = 1,
                             Description = "Chapter 4 finished",
-                            IdGM = 0,
+                            IdGM = 1,
                             IsFinish = false,
                             Name = "Ma première Campagne"
                         },
@@ -168,14 +375,14 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         {
                             Id = 2,
                             Description = "Chapter 2 started",
-                            IdGM = 0,
+                            IdGM = 2,
                             IsFinish = false,
                             Name = "True Story"
                         },
                         new
                         {
                             Id = 3,
-                            IdGM = 0,
+                            IdGM = 1,
                             IsFinish = false,
                             Name = "Dragon First"
                         });
@@ -212,9 +419,6 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                     b.Property<int>("FortitudeSave")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdRace")
-                        .HasColumnType("int");
-
                     b.Property<int>("Initiative")
                         .HasColumnType("int");
 
@@ -233,6 +437,9 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("PVMax")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RaceId")
                         .HasColumnType("int");
 
                     b.Property<int>("ReflexeSave")
@@ -259,6 +466,8 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CampagnId");
+
+                    b.HasIndex("RaceId");
 
                     b.HasIndex("UserId");
 
@@ -290,18 +499,19 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         {
                             Id = 1,
                             BaseAttackBonus = 1,
+                            CampagnId = 1,
                             Charisma = 10,
                             Constitution = 14,
                             Defence = 17,
                             Dexterity = 10,
                             FortitudeSave = 4,
-                            IdRace = 1,
                             Initiative = 0,
                             Intelligence = 8,
                             Level = 1,
                             Name = "Arik le Solide",
                             PVCurrent = 12,
                             PVMax = 12,
+                            RaceId = 1,
                             ReflexeSave = 0,
                             Speed = 30,
                             Strength = 16,
@@ -314,18 +524,19 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         {
                             Id = 2,
                             BaseAttackBonus = 0,
+                            CampagnId = 1,
                             Charisma = 8,
                             Constitution = 12,
                             Defence = 15,
                             Dexterity = 18,
                             FortitudeSave = 1,
-                            IdRace = 2,
                             Initiative = 4,
                             Intelligence = 10,
                             Level = 1,
                             Name = "Elara la Furtive",
                             PVCurrent = 10,
                             PVMax = 10,
+                            RaceId = 2,
                             ReflexeSave = 6,
                             Speed = 30,
                             Strength = 10,
@@ -338,18 +549,19 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         {
                             Id = 3,
                             BaseAttackBonus = 1,
+                            CampagnId = 2,
                             Charisma = 8,
                             Constitution = 16,
                             Defence = 16,
                             Dexterity = 12,
                             FortitudeSave = 5,
-                            IdRace = 3,
                             Initiative = 1,
                             Intelligence = 10,
                             Level = 1,
                             Name = "Borin Pied-de-Fer",
                             PVCurrent = 14,
                             PVMax = 14,
+                            RaceId = 3,
                             ReflexeSave = 1,
                             Speed = 20,
                             Strength = 14,
@@ -410,6 +622,146 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                             BonusRacialId = 3,
                             Name = "Half Elf",
                             TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BonusRacialId = 16,
+                            Name = "Dwarf",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BonusRacialId = 7,
+                            Name = "Halfling",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BonusRacialId = 4,
+                            Name = "Dragonborn",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 7,
+                            BonusRacialId = 9,
+                            Name = "Gnome",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            BonusRacialId = 18,
+                            Name = "Tiefling",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            BonusRacialId = 22,
+                            Name = "Half-Orc",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 10,
+                            BonusRacialId = 15,
+                            Name = "Tabaxi",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 11,
+                            BonusRacialId = 5,
+                            Name = "Firbolg",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 12,
+                            BonusRacialId = 19,
+                            Name = "Goliath",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 13,
+                            BonusRacialId = 20,
+                            Name = "Kenku",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 14,
+                            BonusRacialId = 10,
+                            Name = "Lizardfolk",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 15,
+                            BonusRacialId = 11,
+                            Name = "Aasimar",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 16,
+                            BonusRacialId = 13,
+                            Name = "Hobgoblin",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 17,
+                            BonusRacialId = 14,
+                            Name = "Bugbear",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 18,
+                            BonusRacialId = 23,
+                            Name = "Kobold",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 19,
+                            BonusRacialId = 21,
+                            Name = "Yuan-ti",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 20,
+                            BonusRacialId = 8,
+                            Name = "Genasi (Earth)",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 21,
+                            BonusRacialId = 12,
+                            Name = "Genasi (Fire)",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 22,
+                            BonusRacialId = 6,
+                            Name = "Satyr",
+                            TravelSpeed = 0
+                        },
+                        new
+                        {
+                            Id = 23,
+                            BonusRacialId = 17,
+                            Name = "Tortle",
+                            TravelSpeed = 0
                         });
                 });
 
@@ -442,12 +794,57 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            Name = "GM"
+                            Name = "User"
+                        });
+                });
+
+            modelBuilder.Entity("WorkGroup_RPGHelp.DL.Entities.Spell", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Spell", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "A bolt of flame shoots from your fingertips, searing your target.\r\nDamage: 1d10 fire damage (scales with level)",
+                            Level = 0,
+                            Name = "Firebolt"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "A spear of pure shadow pierces a single enemy, ignoring armor.\r\nDamage: 2d8 necrotic damage, ignores non-magical defense.",
+                            Level = 0,
+                            Name = "Shadow Lance"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Players"
+                            Description = "A shimmering barrier of force surrounds you.\r\n+5 AC until the start of your next turn.",
+                            Level = 0,
+                            Name = "Shielding Ward"
                         });
                 });
 
@@ -481,13 +878,25 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         {
                             Id = 1,
                             Email = "fabian@test.com",
-                            Password = ""
+                            Password = "$argon2id$v=19$m=65536,t=3,p=1$LHZG57rDMJ+sJvIkpI3Jqw$XXx4Ov08UZCFXAOoP+kZTmpI9MVfnJkZ5lP77JNgt/s"
                         },
                         new
                         {
                             Id = 2,
                             Email = "mathieu@test.com",
-                            Password = ""
+                            Password = "$argon2id$v=19$m=65536,t=3,p=1$LHZG57rDMJ+sJvIkpI3Jqw$XXx4Ov08UZCFXAOoP+kZTmpI9MVfnJkZ5lP77JNgt/s"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "user@example.com",
+                            Password = "$argon2id$v=19$m=65536,t=3,p=1$LHZG57rDMJ+sJvIkpI3Jqw$XXx4Ov08UZCFXAOoP+kZTmpI9MVfnJkZ5lP77JNgt/s"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Email = "brandt.fabian@gmail.com",
+                            Password = "$argon2id$v=19$m=65536,t=3,p=1$LHZG57rDMJ+sJvIkpI3Jqw$XXx4Ov08UZCFXAOoP+kZTmpI9MVfnJkZ5lP77JNgt/s"
                         });
                 });
 
@@ -502,6 +911,21 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                     b.HasOne("WorkGroup_RPGHelp.DL.Entities.Users", null)
                         .WithMany()
                         .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RaceSpell", b =>
+                {
+                    b.HasOne("WorkGroup_RPGHelp.DL.Entities.Race", null)
+                        .WithMany()
+                        .HasForeignKey("RacesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WorkGroup_RPGHelp.DL.Entities.Spell", null)
+                        .WithMany()
+                        .HasForeignKey("SpellsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -527,6 +951,12 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         .WithMany("Characteres")
                         .HasForeignKey("CampagnId");
 
+                    b.HasOne("WorkGroup_RPGHelp.DL.Entities.Race", "Race")
+                        .WithMany()
+                        .HasForeignKey("RaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("WorkGroup_RPGHelp.DL.Entities.Users", "Users")
                         .WithMany("Characteres")
                         .HasForeignKey("UserId")
@@ -534,6 +964,8 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Campagns");
+
+                    b.Navigation("Race");
 
                     b.Navigation("Users");
                 });

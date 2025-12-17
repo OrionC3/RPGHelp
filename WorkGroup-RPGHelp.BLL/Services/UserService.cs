@@ -12,11 +12,13 @@ namespace WorkGroup_RPGHelp.BLL.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly ICampagnRepository _campagnRepository;
+        private readonly IRoleRepository _roleRepository;
 
-        public UserService(IUserRepository userRepository, ICampagnRepository campagnRepository)
+        public UserService(IUserRepository userRepository, ICampagnRepository campagnRepository, IRoleRepository roleRepository)
         {
             _userRepository = userRepository;
             _campagnRepository = campagnRepository;
+            _roleRepository = roleRepository;
         }
         public IEnumerable<Users> GetUsers(int page = 0)
         {
@@ -52,6 +54,17 @@ namespace WorkGroup_RPGHelp.BLL.Services
                 throw new UserExistException($"Email {user.Email} already exist.");
             }
             user.Password = Argon2.Hash(user.Password);
+            Role? defaultRole = _roleRepository.FindOne(r => r.Name == "User");
+
+            if (defaultRole == null)
+            {
+                throw new Exception("Default role 'User' not found in database.");
+            }
+
+            // 4. Initialisation de la collection et ajout du rôle
+            user.Role = new List<Role> { defaultRole };
+
+            // 5. Sauvegarde de l'utilisateur (EF Core créera le lien dans la table de jointure)
             _userRepository.Add(user);
         }
 

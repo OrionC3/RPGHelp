@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkGroup_RPGHelp.DAL.Contexts;
 
@@ -11,9 +12,11 @@ using WorkGroup_RPGHelp.DAL.Contexts;
 namespace WorkGroup_RPGHelp.DAL.Migrations
 {
     [DbContext(typeof(RPGHelpContext))]
-    partial class RPGHelpContextModelSnapshot : ModelSnapshot
+    [Migration("20251217105948_AddMoreSeedCharacters")]
+    partial class AddMoreSeedCharacters
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -382,246 +385,6 @@ namespace WorkGroup_RPGHelp.DAL.Migrations
                             IdGM = 1,
                             IsFinish = false,
                             Name = "Dragon First"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Description = "Exploration du château de Strahd",
-                            IdGM = 3,
-                            IsFinish = false,
-                            Name = "L'Ombre de Ravenloft"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Description = "Campagne d'introduction terminée",
-                            IdGM = 4,
-                            IsFinish = true,
-                            Name = "Les Mines de Phandalin"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Description = "Chapitre 3 : En route vers Baldur's Gate",
-                            IdGM = 1,
-                            IsFinish = false,
-                            Name = "Le Trésor de la Reine Dragon"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Description = "Groupe décimé au chapitre 5",
-                            IdGM = 2,
-                            IsFinish = true,
-                            Name = "La Malédiction de Strahd"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Description = "Fuite des drows réussie",
-                            IdGM = 3,
-                            IsFinish = false,
-                            Name = "Odyssée dans l'Outreterre"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Description = "Bloqués dans la jungle de Chult",
-                            IdGM = 4,
-                            IsFinish = false,
-                            Name = "Le Tombeau de l'Annihilation"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Description = "Bataille finale imminente",
-                            IdGM = 1,
-                            IsFinish = false,
-                            Name = "L'Ascension de Tiamat"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Description = "Enquête urbaine en cours",
-                            IdGM = 2,
-                            IsFinish = false,
-                            Name = "Waterdeep : Le Vol des Dragons"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Description = "Voyage en enfer",
-                            IdGM = 3,
-                            IsFinish = false,
-                            Name = "Descente en Avernus"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Description = "Série de donjons one-shot",
-                            IdGM = 4,
-                            IsFinish = true,
-                            Name = "Les Contes du Portail Béant"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Description = "Survie dans le grand nord",
-                            IdGM = 1,
-                            IsFinish = false,
-                            Name = "Le Froid d'Icewind Dale"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Description = "Mystère antique",
-                            IdGM = 2,
-                            IsFinish = false,
-                            Name = "La Citadelle de Verre"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Description = "Guerre contre les géants de feu",
-                            IdGM = 3,
-                            IsFinish = false,
-                            Name = "L'Héritage des Géants"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Description = "Aventure maritime",
-                            IdGM = 4,
-                            IsFinish = false,
-                            Name = "Les Pirates de la Côte des Épées"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            Description = "Horreur cosmique",
-                            IdGM = 1,
-                            IsFinish = true,
-                            Name = "Le Réveil de l'Ancien"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            Description = "Intrigue politique et trains-éclairs",
-                            IdGM = 2,
-                            IsFinish = false,
-                            Name = "Les Éclats d'Eberron"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            Description = "Quête pour les artefacts",
-                            IdGM = 3,
-                            IsFinish = false,
-                            Name = "La Prophétie de l'Oracle"
-                        },
-                        new
-                        {
-                            Id = 21,
-                            Description = "Donjon classique",
-                            IdGM = 4,
-                            IsFinish = false,
-                            Name = "Sous la Montagne de Feu"
-                        },
-                        new
-                        {
-                            Id = 22,
-                            Description = "Défense de la ville terminée",
-                            IdGM = 1,
-                            IsFinish = true,
-                            Name = "Le Siège de Neverwinter"
-                        },
-                        new
-                        {
-                            Id = 23,
-                            Description = "Suite d'Avernus",
-                            IdGM = 2,
-                            IsFinish = false,
-                            Name = "L'Hérésie de Zariel"
-                        },
-                        new
-                        {
-                            Id = 24,
-                            Description = "Rencontre avec les Dryades",
-                            IdGM = 3,
-                            IsFinish = false,
-                            Name = "La Forêt des Murmures"
-                        },
-                        new
-                        {
-                            Id = 25,
-                            Description = "Académie de magie en péril",
-                            IdGM = 4,
-                            IsFinish = false,
-                            Name = "Le Secret des Arcanes"
-                        },
-                        new
-                        {
-                            Id = 26,
-                            Description = "Chasse au trésor céleste",
-                            IdGM = 1,
-                            IsFinish = false,
-                            Name = "Le Vol du Phénix"
-                        },
-                        new
-                        {
-                            Id = 27,
-                            Description = "Campagne nostalgique terminée",
-                            IdGM = 2,
-                            IsFinish = true,
-                            Name = "Les Chroniques de Greyhawk"
-                        },
-                        new
-                        {
-                            Id = 28,
-                            Description = "Exploration de cité perdue",
-                            IdGM = 3,
-                            IsFinish = false,
-                            Name = "La Ruine d'Omu"
-                        },
-                        new
-                        {
-                            Id = 29,
-                            Description = "Invocations incontrôlées",
-                            IdGM = 4,
-                            IsFinish = false,
-                            Name = "La Colère des Éléments"
-                        },
-                        new
-                        {
-                            Id = 30,
-                            Description = "Scénario d'une soirée",
-                            IdGM = 1,
-                            IsFinish = true,
-                            Name = "Le Festin des Gobelins"
-                        },
-                        new
-                        {
-                            Id = 31,
-                            Description = "Niveau 5 atteint",
-                            IdGM = 2,
-                            IsFinish = false,
-                            Name = "La Tour du Mage Fou"
-                        },
-                        new
-                        {
-                            Id = 32,
-                            Description = "Aventure dans le désert",
-                            IdGM = 3,
-                            IsFinish = false,
-                            Name = "L'Oasis de Diamant"
-                        },
-                        new
-                        {
-                            Id = 33,
-                            Description = "Horreur rurale",
-                            IdGM = 4,
-                            IsFinish = false,
-                            Name = "Les Sombres Adrets"
                         });
                 });
 
