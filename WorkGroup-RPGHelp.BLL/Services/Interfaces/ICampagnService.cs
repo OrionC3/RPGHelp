@@ -20,5 +20,6 @@ namespace WorkGroup_RPGHelp.BLL.Services.Interfaces
         void ChangeGM(int oldGMId, int newGMId, int campagnId);
         IEnumerable<Users> GetUsersCampagn(int campagnId, int page = 0);
         IEnumerable<Charactere> GetCharacteresCampagn(int campagnId, int page = 0);
+        long Count();
     }
 }

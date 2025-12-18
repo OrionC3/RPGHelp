@@ -28,7 +28,7 @@ namespace WorkGroup_RPGHelp.API.Controllers
         {
             List<Campagn> c = [.. _campagnService.GetCampagns(page)];
             List<CampagnIndexDto> cidto = [.. c.Select(c => c.ToCampagnIndexDto())];
-            return Ok(new {Data = cidto, Count = cidto.Count});
+            return Ok(new {Data = cidto, Count = _campagnService.Count()});
         }
 
         [HttpGet("{id}")]

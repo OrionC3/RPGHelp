@@ -116,5 +116,10 @@ namespace WorkGroup_RPGHelp.BLL.Services
         {
             return _campagnRepository.GetUsersCampagn(campagnId, page);
         }
+
+        public long Count()
+        {
+            return _campagnRepository.Count();
+        }
     }
 }
