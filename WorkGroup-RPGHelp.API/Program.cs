@@ -110,6 +110,18 @@ builder.Services.AddAuthentication(option =>
     option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(option =>
 {
+    option.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = (context) =>
+        {
+            var token = context.Request.Cookies["accessToken"];
+            if(!string.IsNullOrEmpty(token))
+            {
+                context.Token = token;
+            }
+            return Task.CompletedTask;
+        }
+    };
     option.TokenValidationParameters = new TokenValidationParameters
     {
         // Important!

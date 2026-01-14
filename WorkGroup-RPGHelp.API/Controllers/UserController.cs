@@ -75,7 +75,26 @@ namespace WorkGroup_RPGHelp.API.Controllers
 
             string token = _authService.GenerateToken(user);
 
-            return Ok(new { token });
+            // ### Create gest cookies : CookiesHttpOnly 
+            var cookieOptions = new CookieOptions()
+            {
+                // Cookie gest for the server => JS Client don't access at the cookie
+                HttpOnly = true,
+
+                // cookie send only https
+                Secure = true,
+
+                SameSite = SameSiteMode.Strict,
+
+                // All the 1 hour: the user need relogging
+                Expires = DateTime.UtcNow.AddHours(1)
+            };
+
+            // Add cookie client
+            Response.Cookies.Append("accessToken", token, cookieOptions);
+
+            //return Ok(new { token }); OLD version
+            return Ok();
         }
 
         [HttpDelete("{id}")]
