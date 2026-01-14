@@ -147,12 +147,5 @@ namespace WorkGroup_RPGHelp.API.Controllers
             return Ok(new { Data = uid, Count = _userService.Count(search) });
         }
 
-        [HttpGet("sentry-test")]
-        public IActionResult SentryTest()
-        {
-            SentrySdk.CaptureMessage("Hello Sentry");
-            return Ok();
-        }
-
     }
 }
