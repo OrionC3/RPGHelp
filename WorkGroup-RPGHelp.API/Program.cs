@@ -12,6 +12,7 @@ using WorkGroup_RPGHelp.BLL.Services.Interfaces;
 using WorkGroup_RPGHelp.DAL.Contexts;
 using WorkGroup_RPGHelp.DAL.Repositories;
 using WorkGroup_RPGHelp.DAL.Repositories.Interfaces;
+using AspNetCoreRateLimit;
 
 
 Env.Load();
@@ -129,6 +130,15 @@ builder.Services.AddAuthentication(option =>
     };
 });
 
+#region Rate Limiting
+
+builder.Services.AddMemoryCache();
+builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection("IpRateLimiting"));
+builder.Services.AddInMemoryRateLimiting();
+builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+#endregion
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -141,6 +151,8 @@ if (app.Environment.IsDevelopment())
 app.UseCors("FFA");
 
 app.UseHttpsRedirection();
+
+app.UseIpRateLimiting(); // Rate Limiting
 
 app.UseMiddleware<ExceptionMiddleware>();
 
