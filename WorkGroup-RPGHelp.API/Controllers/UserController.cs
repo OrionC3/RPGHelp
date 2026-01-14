@@ -146,5 +146,13 @@ namespace WorkGroup_RPGHelp.API.Controllers
             List<UserIndexDto> uid = _userService.GetUsersByEmail(search).Select(u => u.ToUserIndexDto()).ToList();
             return Ok(new { Data = uid, Count = _userService.Count(search) });
         }
+
+        [HttpGet("sentry-test")]
+        public IActionResult SentryTest()
+        {
+            SentrySdk.CaptureMessage("Hello Sentry");
+            return Ok();
+        }
+
     }
 }

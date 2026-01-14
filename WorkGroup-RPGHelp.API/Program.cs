@@ -1,3 +1,5 @@
+using DotNetEnv;
+using Sentry;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -11,7 +13,19 @@ using WorkGroup_RPGHelp.DAL.Contexts;
 using WorkGroup_RPGHelp.DAL.Repositories;
 using WorkGroup_RPGHelp.DAL.Repositories.Interfaces;
 
+
+Env.Load();
+
 var builder = WebApplication.CreateBuilder(args);
+
+var sentryDsn = Environment.GetEnvironmentVariable("SENTRY_DSN");
+
+builder.WebHost.UseSentry(o =>
+{
+    o.Dsn = sentryDsn;
+    o.Debug = true; // for dev
+});
+
 
 // Add services to the container.
 
